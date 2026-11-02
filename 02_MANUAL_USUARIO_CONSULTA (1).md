@@ -238,24 +238,7 @@ Hágalo siempre al terminar, especialmente si el equipo lo usan otras personas. 
 | *No se pudo contactar con el servidor…* | El sistema no responde; avise al administrador |
 | *The term 'Connect-Red' is not recognized…* | No cargó las herramientas: repita el paso 2 de la sección 3 |
 
-## 8. Su seguridad y la de la red
 
-1. **La contraseña es personal.** No la comparta, no la anote en papeles a la vista ni la envíe por mensajería.
-2. **Cierre la sesión** al terminar.
-3. **No use el sistema desde equipos que no sean de confianza** (cibercafés, equipos sin antivirus ni actualizaciones).
-4. **La información de red es sensible**: las direcciones IP y la ubicación de los equipos ayudan a un atacante. No la publique ni la comparta fuera de la institución.
-5. **Avise de inmediato** al responsable de seguridad si: olvidó cerrar sesión en un equipo ajeno, cree que alguien conoce su contraseña, recibe un correo que le pide su contraseña (el sistema **nunca** se la pedirá por correo) o ve datos que no le corresponden.
-
-## 9. Preguntas frecuentes
-
-**¿Puedo ver quién cambió un dato?** No con este rol; la bitácora la revisa el administrador.
-**¿Por qué no veo las IP de los servidores?** Aún no están registradas; el informe de origen no las asigna a cada servidor.
-**¿Por qué «próximos mantenimientos» está vacío?** Ver la nota de la sección 5.6.
-**¿Puedo usar el sistema desde mi casa?** Solo si la institución lo habilita por conexión segura (VPN) y su equipo cumple los requisitos de seguridad.
-
-Más preguntas y significado de términos: `07_PREGUNTAS_FRECUENTES_Y_GLOSARIO`.
-
-## 10. A quién acudir
 
 | Necesidad | Contacto |
 |---|---|
