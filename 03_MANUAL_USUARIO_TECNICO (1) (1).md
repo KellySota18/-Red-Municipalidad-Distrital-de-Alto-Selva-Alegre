@@ -143,15 +143,4 @@ Valen todas las reglas del manual de consulta (sección 8) y, además:
 2. Si cambia de funciones o deja el área, avise al administrador para ajustar o desactivar su cuenta.
 3. Trabaje desde equipos institucionales actualizados y con antivirus.
 
-## 9. Resumen de comandos del técnico
 
-| Quiero… | Comando |
-|---|---|
-| Iniciar sesión | `Connect-Red -Url … -Correo …` |
-| Ver equipos | `Get-RedDispositivo [-Tipo] [-Estado] [-Nombre]` |
-| Ver mantenimientos | `Get-RedMantenimiento` |
-| Ver próximos vencimientos | `Get-RedMantenimiento -Proximos` |
-| Programar | `New-RedMantenimiento -Dispositivo … -Descripcion … -Fecha AAAA-MM-DD [-Tipo …]` |
-| Cambiar estado | `Set-RedMantenimiento -Id … -Estado … [-FechaRealizada AAAA-MM-DD]` |
-| Cambiar mi contraseña | `Set-RedContrasena` |
-| Cerrar sesión | `Disconnect-Red` |
