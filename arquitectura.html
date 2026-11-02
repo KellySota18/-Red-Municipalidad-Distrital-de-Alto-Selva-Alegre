@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<style>
+  html,body{margin:0;padding:0;background:#ffffff;}
+  .wrap{width:1600px;height:1000px;background:#ffffff;font-family:Segoe UI,Arial,sans-serif;color:#12263a;}
+  .title{font-size:34px;font-weight:700;letter-spacing:.2px;margin:28px 0 4px 46px;}
+  .sub{font-size:17px;color:#51657a;margin:0 0 18px 46px;}
+  svg{display:block;}
+  .box{stroke-width:2;rx:12;}
+  .lbl{font-family:Segoe UI,Arial,sans-serif;}
+  .mono{font-family:Consolas,monospace;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="title">Arquitectura general del sistema</div>
+  <div class="sub">Sistema de Inventario y Seguridad de Red · Municipalidad Distrital de Alto Selva Alegre · v1.0</div>
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#38506b"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#1f6fb2"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#2e7d4f"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#b26a00"/>
+    </marker>
+  </defs>
+
+  <!-- Carriles -->
+  <rect x="30" y="40" width="1540" height="160" rx="16" fill="#f2f6fa" stroke="#d7e2ec"/>
+  <rect x="30" y="230" width="1540" height="200" rx="16" fill="#f4f8f4" stroke="#d6e6d8"/>
+  <rect x="30" y="460" width="1540" height="210" rx="16" fill="#f6f3fb" stroke="#e1d8ee"/>
+  <rect x="30" y="700" width="1540" height="170" rx="16" fill="#fff8ef" stroke="#efe0c8"/>
+
+  <text x="55" y="72" font-size="18" font-weight="700" fill="#51657a">USUARIOS Y CANALES DE ACCESO</text>
+  <text x="55" y="262" font-size="18" font-weight="700" fill="#456a4a">CAPA DE PRESENTACIÓN / CLIENTE</text>
+  <text x="55" y="492" font-size="18" font-weight="700" fill="#5a4a75">CAPA DE APLICACIÓN / SERVICIOS</text>
+  <text x="55" y="732" font-size="18" font-weight="700" fill="#7a5a2a">CAPA DE DATOS Y OPERACIÓN</text>
+
+  <!-- Usuarios -->
+  <rect class="box" x="70" y="95" width="300" height="80" rx="12" fill="#ffffff" stroke="#9fb4c8"/>
+  <text x="220" y="127" text-anchor="middle" font-size="18" font-weight="700">Rol CONSULTA</text>
+  <text x="220" y="152" text-anchor="middle" font-size="14" fill="#51657a">Consulta inventario, VLAN, subredes</text>
+
+  <rect class="box" x="400" y="95" width="300" height="80" rx="12" fill="#ffffff" stroke="#9fb4c8"/>
+  <text x="550" y="127" text-anchor="middle" font-size="18" font-weight="700">Rol TÉCNICO</text>
+  <text x="550" y="152" text-anchor="middle" font-size="14" fill="#51657a">Programa y actualiza sus mantenimientos</text>
+
+  <rect class="box" x="730" y="95" width="300" height="80" rx="12" fill="#ffffff" stroke="#9fb4c8"/>
+  <text x="880" y="127" text-anchor="middle" font-size="18" font-weight="700">Rol ADMINISTRADOR</text>
+  <text x="880" y="152" text-anchor="middle" font-size="14" fill="#51657a">Usuarios, equipos y seguridad de red</text>
+
+  <rect class="box" x="1060" y="95" width="480" height="80" rx="12" fill="#ffffff" stroke="#9fb4c8"/>
+  <text x="1300" y="127" text-anchor="middle" font-size="18" font-weight="700">Administrador de la base de datos (DBA)</text>
+  <text x="1300" y="152" text-anchor="middle" font-size="14" fill="#51657a">Instalación, respaldo, restauración y pgAdmin 4</text>
+
+  <!-- Cliente -->
+  <rect class="box" x="70" y="285" width="520" height="120" rx="12" fill="#ffffff" stroke="#8fb394"/>
+  <text x="330" y="318" text-anchor="middle" font-size="19" font-weight="700">Estación de trabajo Windows 10/11</text>
+  <text x="330" y="345" text-anchor="middle" font-size="15" fill="#3f5f45">PowerShell 7 / Windows PowerShell 5.1</text>
+  <text x="330" y="370" text-anchor="middle" font-size="15" fill="#3f5f45">Módulo RedCli.psm1 (comandos Connect-Red, Get-Red…)</text>
+  <text x="330" y="392" text-anchor="middle" font-size="13" fill="#6a7f6d">No existe interfaz web ni aplicación móvil</text>
+
+  <rect class="box" x="640" y="285" width="390" height="120" rx="12" fill="#ffffff" stroke="#8fb394"/>
+  <text x="835" y="318" text-anchor="middle" font-size="19" font-weight="700">Navegador (solo administración)</text>
+  <text x="835" y="345" text-anchor="middle" font-size="15" fill="#3f5f45">pgAdmin 4 → PostgreSQL</text>
+  <text x="835" y="370" text-anchor="middle" font-size="15" fill="#3f5f45">Edge / Chrome / Firefox actualizados</text>
+  <text x="835" y="392" text-anchor="middle" font-size="13" fill="#6a7f6d">Acceso directo restringido a la LAN</text>
+
+  <rect class="box" x="1080" y="285" width="460" height="120" rx="12" fill="#ffffff" stroke="#8fb394"/>
+  <text x="1310" y="318" text-anchor="middle" font-size="19" font-weight="700">Herramientas de ACL</text>
+  <text x="1310" y="345" text-anchor="middle" font-size="15" fill="#3f5f45">Node.js 20 · simulador · generador de configuración</text>
+  <text x="1310" y="370" text-anchor="middle" font-size="15" fill="#3f5f45">Cisco Packet Tracer (pruebas manuales)</text>
+  <text x="1310" y="392" text-anchor="middle" font-size="13" fill="#6a7f6d">Equipo del responsable de red</text>
+
+  <!-- Flechas a aplicación -->
+  <line x1="330" y1="405" x2="330" y2="545" stroke="#1f6fb2" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <text x="342" y="470" font-size="14" fill="#1f6fb2" font-weight="600">HTTPS / HTTP + cookies</text>
+  <text x="342" y="490" font-size="13" fill="#1f6fb2">API REST (JSON)</text>
+
+  <line x1="835" y1="405" x2="835" y2="545" stroke="#2e7d4f" stroke-width="3" marker-end="url(#arrowGreen)"/>
+  <text x="847" y="470" font-size="14" fill="#2e7d4f" font-weight="600">SQL directo (5432)</text>
+  <text x="847" y="490" font-size="13" fill="#2e7d4f">solo red administrativa</text>
+
+  <line x1="1310" y1="405" x2="1310" y2="545" stroke="#b26a00" stroke-width="3" marker-end="url(#arrowOrange)"/>
+  <text x="1322" y="470" font-size="14" fill="#b26a00" font-weight="600">Configuración IOS</text>
+  <text x="1322" y="490" font-size="13" fill="#b26a00">y resultados a la BD</text>
+
+  <!-- Aplicación -->
+  <rect class="box" x="70" y="545" width="650" height="105" rx="12" fill="#ffffff" stroke="#a593c2"/>
+  <text x="395" y="578" text-anchor="middle" font-size="20" font-weight="700">API REST — Node.js 20 + Express 4</text>
+  <text x="395" y="605" text-anchor="middle" font-size="14" fill="#5a4a75">Autenticación · Zod · Helmet/CSP · CSRF · CORS · rate limit · sesiones</text>
+  <text x="395" y="628" text-anchor="middle" font-size="14" fill="#5a4a75">Escucha en 127.0.0.1:3000 · nunca se expone directamente a Internet</text>
+
+  <rect class="box" x="820" y="545" width="720" height="105" rx="12" fill="#ffffff" stroke="#a593c2"/>
+  <text x="1180" y="578" text-anchor="middle" font-size="20" font-weight="700">Proxy inverso con TLS (IIS / Nginx / Caddy)</text>
+  <text x="1180" y="605" text-anchor="middle" font-size="14" fill="#5a4a75">Termina HTTPS en 443, aplica cabeceras y reenvía a la API local</text>
+  <text x="1180" y="628" text-anchor="middle" font-size="14" fill="#5a4a75">Opcional en desarrollo; obligatorio en producción</text>
+
+  <!-- Flecha API a proxy (bidireccional conceptual) -->
+  <line x1="720" y1="597" x2="820" y2="597" stroke="#5a4a75" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- Flechas a datos -->
+  <line x1="330" y1="650" x2="330" y2="775" stroke="#1f6fb2" stroke-width="3" marker-end="url(#arrowBlue)"/>
+  <text x="342" y="710" font-size="14" fill="#1f6fb2" font-weight="600">SQL parametrizado</text>
+  <text x="342" y="730" font-size="13" fill="#1f6fb2">usuario app_backend (rol_app)</text>
+
+  <line x1="1180" y1="650" x2="1180" y2="775" stroke="#2e7d4f" stroke-width="3" marker-end="url(#arrowGreen)"/>
+  <text x="1192" y="710" font-size="14" fill="#2e7d4f" font-weight="600">consultas / funciones</text>
+  <text x="1192" y="730" font-size="13" fill="#2e7d4f">reportes y administración</text>
+
+  <!-- Base de datos -->
+  <rect class="box" x="70" y="775" width="650" height="80" rx="12" fill="#ffffff" stroke="#c7a96b"/>
+  <text x="395" y="807" text-anchor="middle" font-size="20" font-weight="700">PostgreSQL 16 — base infra_red_db · esquema infra</text>
+  <text x="395" y="832" text-anchor="middle" font-size="14" fill="#7a5a2a">Inventario · usuarios y roles · sesiones · mantenimientos · ACL y pruebas · auditoría inmutable</text>
+
+  <rect class="box" x="820" y="775" width="720" height="80" rx="12" fill="#ffffff" stroke="#c7a96b"/>
+  <text x="1180" y="807" text-anchor="middle" font-size="19" font-weight="700">Copias de seguridad cifradas (GPG) + verificación SHA-256</text>
+  <text x="1180" y="832" text-anchor="middle" font-size="14" fill="#7a5a2a">Copia diaria · retención 30 días · prueba trimestral de restauración · almacenamiento externo</text>
+
+  <!-- Nota RLS -->
+  <rect x="70" y="875" width="1470" height="0" fill="none"/>
+  <text x="70" y="888" font-size="13" fill="#51657a">Nota: los permisos se aplican en la base de datos mediante Row Level Security (RLS). La consola nunca accede directamente a PostgreSQL.</text>
+</svg>
+</div>
+</body>
+</html>

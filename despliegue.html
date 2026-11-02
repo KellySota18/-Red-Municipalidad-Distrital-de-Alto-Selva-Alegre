@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<style>
+  html,body{margin:0;padding:0;background:#fff;}
+  .wrap{width:1600px;height:1000px;background:#fff;font-family:Segoe UI,Arial,sans-serif;color:#12263a;}
+  .title{font-size:34px;font-weight:700;margin:28px 0 4px 46px;}
+  .sub{font-size:17px;color:#51657a;margin:0 0 18px 46px;}
+  svg{display:block;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="title">Diagrama de despliegue</div>
+  <div class="sub">Sistema de Inventario y Seguridad de Red · despliegue local y en servidor institucional · v1.0</div>
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#38506b"/></marker>
+    <marker id="ab" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#1f6fb2"/></marker>
+    <marker id="ag" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#2e7d4f"/></marker>
+    <marker id="ao" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#b26a00"/></marker>
+  </defs>
+
+  <!-- zona LAN -->
+  <rect x="40" y="70" width="1520" height="250" rx="18" fill="#f4f8fb" stroke="#cfdde9"/>
+  <text x="65" y="102" font-size="18" font-weight="700" fill="#42627f">RED LOCAL INSTITUCIONAL (LAN / VPN)</text>
+
+  <!-- Puesto usuario -->
+  <rect x="75" y="130" width="420" height="150" rx="14" fill="#fff" stroke="#8fb0c8" stroke-width="2"/>
+  <text x="285" y="164" text-anchor="middle" font-size="20" font-weight="700">Puesto de usuario</text>
+  <text x="285" y="192" text-anchor="middle" font-size="15" fill="#42627f">Windows 10/11 · PowerShell 7</text>
+  <text x="285" y="216" text-anchor="middle" font-size="15" fill="#42627f">Módulo RedCli.psm1</text>
+  <text x="285" y="242" text-anchor="middle" font-size="14" fill="#6b7f92">Roles: consulta / técnico / administrador</text>
+  <text x="285" y="264" text-anchor="middle" font-size="13" fill="#8a9bab">Cliente ligero: sin instalación de BD</text>
+
+  <!-- Puesto administrador de red -->
+  <rect x="560" y="130" width="420" height="150" rx="14" fill="#fff" stroke="#8fb0c8" stroke-width="2"/>
+  <text x="770" y="164" text-anchor="middle" font-size="20" font-weight="700">Puesto de administración de red</text>
+  <text x="770" y="192" text-anchor="middle" font-size="15" fill="#42627f">Node.js 20 · herramientas ACL</text>
+  <text x="770" y="216" text-anchor="middle" font-size="15" fill="#42627f">Cisco Packet Tracer (opcional)</text>
+  <text x="770" y="242" text-anchor="middle" font-size="14" fill="#6b7f92">Simulador, generador de configuración</text>
+  <text x="770" y="264" text-anchor="middle" font-size="13" fill="#8a9bab">Pruebas antes de aplicar en routers</text>
+
+  <!-- Puesto DBA -->
+  <rect x="1045" y="130" width="470" height="150" rx="14" fill="#fff" stroke="#8fb0c8" stroke-width="2"/>
+  <text x="1280" y="164" text-anchor="middle" font-size="20" font-weight="700">Puesto del DBA</text>
+  <text x="1280" y="192" text-anchor="middle" font-size="15" fill="#42627f">pgAdmin 4 / psql</text>
+  <text x="1280" y="216" text-anchor="middle" font-size="15" fill="#42627f">GnuPG (Gpg4win) para respaldos</text>
+  <text x="1280" y="242" text-anchor="middle" font-size="14" fill="#6b7f92">Acceso restringido por IP y credenciales</text>
+  <text x="1280" y="264" text-anchor="middle" font-size="13" fill="#8a9bab">Nunca expuesto a Internet</text>
+
+  <!-- línea LAN -->
+  <line x1="100" y1="305" x2="1500" y2="305" stroke="#8fb0c8" stroke-width="5"/>
+  <text x="700" y="297" text-anchor="middle" font-size="13" fill="#42627f" font-weight="600">HTTPS 443 / SQL 5432 (solo red administrativa)</text>
+
+  <!-- zona servidor -->
+  <rect x="40" y="360" width="1520" height="370" rx="18" fill="#f6f2fa" stroke="#d9cde8"/>
+  <text x="65" y="392" font-size="18" font-weight="700" fill="#5c4a78">SERVIDOR INSTITUCIONAL (Windows Server 2019/2022 o Linux)</text>
+
+  <!-- reverse proxy -->
+  <rect x="75" y="425" width="420" height="250" rx="14" fill="#fff" stroke="#a593c2" stroke-width="2"/>
+  <text x="285" y="458" text-anchor="middle" font-size="20" font-weight="700">Proxy inverso / servidor web</text>
+  <text x="285" y="488" text-anchor="middle" font-size="15" fill="#5c4a78">IIS · Nginx · Caddy</text>
+  <text x="285" y="514" text-anchor="middle" font-size="15" fill="#5c4a78">TLS 1.2/1.3 · certificado válido</text>
+  <text x="285" y="540" text-anchor="middle" font-size="15" fill="#5c4a78">Puerto público: 443</text>
+  <text x="285" y="570" text-anchor="middle" font-size="14" fill="#7d6c93">Cabeceras de seguridad</text>
+  <text x="285" y="594" text-anchor="middle" font-size="14" fill="#7d6c93">TRUST_PROXY=1</text>
+  <text x="285" y="626" text-anchor="middle" font-size="13" fill="#9a8bb0">Redirige a 127.0.0.1:3000</text>
+
+  <!-- api -->
+  <rect x="560" y="425" width="420" height="250" rx="14" fill="#fff" stroke="#a593c2" stroke-width="2"/>
+  <text x="770" y="458" text-anchor="middle" font-size="20" font-weight="700">Servicio de aplicación</text>
+  <text x="770" y="488" text-anchor="middle" font-size="15" fill="#5c4a78">Node.js 20 LTS + Express 4</text>
+  <text x="770" y="514" text-anchor="middle" font-size="15" fill="#5c4a78">API REST · puerto 3000</text>
+  <text x="770" y="540" text-anchor="middle" font-size="15" fill="#5c4a78">Escucha solo en 127.0.0.1</text>
+  <text x="770" y="570" text-anchor="middle" font-size="14" fill="#7d6c93">Servicio Windows (NSSM / Task Scheduler)</text>
+  <text x="770" y="594" text-anchor="middle" font-size="14" fill="#7d6c93">o systemd en Linux</text>
+  <text x="770" y="626" text-anchor="middle" font-size="13" fill="#9a8bb0">Variables en .env (fuera de Git)</text>
+
+  <!-- db -->
+  <rect x="1045" y="425" width="470" height="250" rx="14" fill="#fff" stroke="#c7a96b" stroke-width="2"/>
+  <text x="1280" y="458" text-anchor="middle" font-size="20" font-weight="700">Motor de base de datos</text>
+  <text x="1280" y="488" text-anchor="middle" font-size="15" fill="#7a5a2a">PostgreSQL 16</text>
+  <text x="1280" y="514" text-anchor="middle" font-size="15" fill="#7a5a2a">Puerto 5432 · solo localhost</text>
+  <text x="1280" y="540" text-anchor="middle" font-size="15" fill="#7a5a2a">Base: infra_red_db · esquema: infra</text>
+  <text x="1280" y="570" text-anchor="middle" font-size="14" fill="#8f7444">Roles: postgres, rol_app, rol_lectura</text>
+  <text x="1280" y="594" text-anchor="middle" font-size="14" fill="#8f7444">RLS · auditoría · bcrypt · cifrado TLS opcional</text>
+  <text x="1280" y="626" text-anchor="middle" font-size="13" fill="#a08a63">Datos y WAL en disco local del servidor</text>
+
+  <!-- flechas servidor -->
+  <line x1="495" y1="550" x2="560" y2="550" stroke="#5c4a78" stroke-width="4" marker-end="url(#a)"/>
+  <text x="527" y="538" text-anchor="middle" font-size="12" fill="#5c4a78" font-weight="600">HTTP local</text>
+  <line x1="980" y1="550" x2="1045" y2="550" stroke="#2e7d4f" stroke-width="4" marker-end="url(#ag)"/>
+  <text x="1012" y="538" text-anchor="middle" font-size="12" fill="#2e7d4f" font-weight="600">SQL 5432</text>
+
+  <!-- flechas LAN a servidor -->
+  <line x1="285" y1="305" x2="285" y2="425" stroke="#1f6fb2" stroke-width="4" marker-end="url(#ab)"/>
+  <text x="298" y="350" font-size="13" fill="#1f6fb2" font-weight="600">HTTPS 443</text>
+
+  <line x1="770" y1="305" x2="770" y2="425" stroke="#b26a00" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#ao)"/>
+  <text x="783" y="350" font-size="13" fill="#b26a00" font-weight="600">Resultados/ACL (opcional)</text>
+
+  <line x1="1280" y1="305" x2="1280" y2="425" stroke="#2e7d4f" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#ag)"/>
+  <text x="1293" y="350" font-size="13" fill="#2e7d4f" font-weight="600">pgAdmin 5432 (restringido)</text>
+
+  <!-- zona respaldo -->
+  <rect x="40" y="750" width="1520" height="120" rx="18" fill="#fff8ef" stroke="#efe0c8"/>
+  <text x="65" y="782" font-size="18" font-weight="700" fill="#7a5a2a">ALMACENAMIENTO Y CONTINUIDAD</text>
+
+  <rect x="75" y="800" width="430" height="52" rx="10" fill="#fff" stroke="#c7a96b" stroke-width="2"/>
+  <text x="290" y="832" text-anchor="middle" font-size="15" fill="#7a5a2a">Copia cifrada GPG + SHA-256 · C:\backups</text>
+
+  <rect x="545" y="800" width="430" height="52" rx="10" fill="#fff" stroke="#c7a96b" stroke-width="2"/>
+  <text x="760" y="832" text-anchor="middle" font-size="15" fill="#7a5a2a">Copia externa: otro disco / nube cifrada</text>
+
+  <rect x="1015" y="800" width="500" height="52" rx="10" fill="#fff" stroke="#c7a96b" stroke-width="2"/>
+  <text x="1265" y="832" text-anchor="middle" font-size="15" fill="#7a5a2a">Clave privada GPG fuera del servidor · prueba trimestral</text>
+
+  <line x1="1280" y1="675" x2="1280" y2="750" stroke="#b26a00" stroke-width="3" stroke-dasharray="8 6" marker-end="url(#ao)"/>
+  <text x="1293" y="715" font-size="13" fill="#b26a00" font-weight="600">pg_dump diario 02:00</text>
+</svg>
+</div>
+</body>
+</html>

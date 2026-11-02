@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><style>
+html,body{margin:0;background:#dfe6ee;}
+.frame{width:1200px;height:720px;background:#dfe6ee;padding:26px 30px;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
+.window{width:1140px;height:668px;background:#0c0c0c;border-radius:10px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,.28);border:1px solid #1f2a35;}
+.bar{height:42px;background:#20262d;display:flex;align-items:center;padding:0 16px;color:#e7edf3;font-size:15px;}
+.dots{display:flex;gap:7px;margin-right:14px;} .dot{width:12px;height:12px;border-radius:50%;}
+.t{color:#c9d6e2;font-size:14px;letter-spacing:.2px;}
+.body{padding:20px 24px;color:#d7e2ec;font-family:Consolas,'Cascadia Mono',monospace;font-size:16.5px;line-height:1.42;white-space:pre-wrap;}
+.cmd{color:#7cd3ff;font-weight:600;} .cont{color:#7cd3ff;} .dim{color:#9fb0c2;}
+.hint{margin:6px 0 0 32px;color:#8fa2b5;font-size:13px;}
+</style></head><body><div class="frame"><div class="window">
+<div class="bar"><div class="dots"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span></div><div class="t">Consola de administración — pruebas de ACL</div></div>
+<div class="body"><span class="cmd">PS C:\proyecto_red\acl&gt; node probar_acls.js</span>
+
+==============================================================================
+A) Tabla 16 del informe - v2 (denegación por defecto, tras la migración)
+==============================================================================
+OK  # 1 PC1 → Server3 icmp         esperado=permitido  obtenido=permitido
+OK  # 2 PC7 → Server3 icmp         esperado=bloqueado  obtenido=bloqueado
+...
+==============================================================================
+COMPARACIÓN
+==============================================================================
+Combinaciones probadas ........ 385
+Permitidas con v1 (informe) .... 282  (73.2 %)
+Permitidas con v2 (por defecto) 36   (9.4 %)  = flujos autorizados por la matriz
+
+RESULTADO: TODAS LAS PRUEBAS ESPERADAS PASARON
+</div></div><div class="hint">Evidencia de referencia · Sistema de Inventario y Seguridad de Red v1.0</div></div></body></html>
