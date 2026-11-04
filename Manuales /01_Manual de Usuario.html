@@ -1,0 +1,2086 @@
+<h1>MANUAL DE USUARIO</h1>
+<h2>Sistema de Inventario y Seguridad de Red</h2>
+<h3>Municipalidad Distrital de Alto Selva Alegre</h3>
+<p><strong>Versión del sistema:</strong> 1.0<br />
+<strong>Fecha de elaboración:</strong> 01 de noviembre de 2026<br />
+<strong>Curso:</strong> Computación en Red II<br />
+<strong>Tipo de solución:</strong> Aplicación de escritorio por consola (CLI) + API REST + base de datos PostgreSQL</p>
+<hr />
+<h2>Ficha del documento</h2>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nombre del proyecto</td>
+<td>Implementación de base de datos, API segura y herramientas de ACL para la red de la Municipalidad Distrital de Alto Selva Alegre</td>
+</tr>
+<tr>
+<td>Nombre del sistema o solución</td>
+<td>Sistema de Inventario y Seguridad de Red</td>
+</tr>
+<tr>
+<td>Número de grupo</td>
+<td><strong>[Completar: N.º de grupo]</strong></td>
+</tr>
+<tr>
+<td>Integrantes del equipo</td>
+<td><strong>[Completar: nombre y apellidos de cada integrante]</strong></td>
+</tr>
+<tr>
+<td>Curso y sección</td>
+<td>Computación en Red II — Sección <strong>[completar]</strong></td>
+</tr>
+<tr>
+<td>Fecha de elaboración</td>
+<td>01/11/2026</td>
+</tr>
+<tr>
+<td>Versión actual del sistema</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Entidad usuaria</td>
+<td>Municipalidad Distrital de Alto Selva Alegre (Arequipa, Perú)</td>
+</tr>
+<tr>
+<td>Idioma</td>
+<td>Español</td>
+</tr>
+<tr>
+<td>Repositorio del proyecto</td>
+<td><strong>[Completar: enlace al repositorio GitHub]</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Integrantes del equipo</h3>
+<table>
+<thead>
+<tr>
+<th>N.º</th>
+<th>Apellidos y nombres</th>
+<th>Rol en el proyecto</th>
+<th>Correo institucional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>[Completar]</strong></td>
+<td><strong>[Completar]</strong></td>
+<td><strong>[Completar]</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>[Completar]</strong></td>
+<td><strong>[Completar]</strong></td>
+<td><strong>[Completar]</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>[Completar]</strong></td>
+<td><strong>[Completar]</strong></td>
+<td><strong>[Completar]</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>[Completar]</strong></td>
+<td><strong>[Completar]</strong></td>
+<td><strong>[Completar]</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>[Completar]</strong></td>
+<td><strong>[Completar]</strong></td>
+<td><strong>[Completar]</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Nota sobre los datos institucionales.</strong> Los datos de grupo, integrantes, sección, responsables y repositorio no se encontraban en la carpeta del proyecto; se dejan marcados con <strong>[Completar]</strong> para que el equipo los consigne antes de la entrega. El resto del contenido se elaboró a partir de los archivos técnicos del proyecto (<code>01_INFORMACION_DEL_SISTEMA.md</code>, <code>02_MANUAL_USUARIO_CONSULTA.md</code>, <code>03_MANUAL_USUARIO_TECNICO (1).md</code>, <code>MANUAL_IMPLEMENTACION.md</code>, <code>README.md</code>, <code>RedCli.psm1</code>, <code>api/server.js</code>, <code>bd/*.sql</code>, <code>acl/*</code> y <code>docs/guia_seguridad.md</code>).</p>
+</blockquote>
+<hr />
+<h2>Índice</h2>
+<ol>
+<li><a href="#1-información-general">Información general</a></li>
+<li><a href="#2-introducción-y-descripción-del-sistema">Introducción y descripción del sistema</a></li>
+<li><a href="#3-requisitos-para-el-uso-del-sistema">Requisitos para el uso del sistema</a></li>
+<li><a href="#4-acceso-e-inicio-de-sesión">Acceso e inicio de sesión</a></li>
+<li><a href="#5-descripción-de-la-interfaz">Descripción de la interfaz</a></li>
+<li><a href="#6-procedimientos-de-uso-de-las-funcionalidades">Procedimientos de uso de las funcionalidades</a></li>
+<li><a href="#7-mensajes-de-error-y-solución-de-problemas">Mensajes de error y solución de problemas</a></li>
+<li><a href="#8-recomendaciones-de-uso">Recomendaciones de uso</a></li>
+<li><a href="#9-preguntas-frecuentes">Preguntas frecuentes</a></li>
+<li><a href="#10-glosario">Glosario</a></li>
+<li><a href="#11-anexos">Anexos</a></li>
+<li><a href="#12-control-de-versiones">Control de versiones</a></li>
+</ol>
+<hr />
+<h2>1. Información general</h2>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nombre del proyecto</td>
+<td>Implementación de base de datos, API segura y herramientas de ACL para la red de la Municipalidad Distrital de Alto Selva Alegre</td>
+</tr>
+<tr>
+<td>Nombre del sistema</td>
+<td>Sistema de Inventario y Seguridad de Red</td>
+</tr>
+<tr>
+<td>Número de grupo</td>
+<td><strong>[Completar]</strong></td>
+</tr>
+<tr>
+<td>Integrantes</td>
+<td><strong>[Ver tabla de la ficha del documento]</strong></td>
+</tr>
+<tr>
+<td>Curso</td>
+<td>Computación en Red II</td>
+</tr>
+<tr>
+<td>Sección</td>
+<td><strong>[Completar]</strong></td>
+</tr>
+<tr>
+<td>Fecha de elaboración</td>
+<td>01/11/2026</td>
+</tr>
+<tr>
+<td>Versión actual</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Entidad</td>
+<td>Municipalidad Distrital de Alto Selva Alegre (Arequipa, Perú)</td>
+</tr>
+<tr>
+<td>Alcance</td>
+<td>Propuesta técnica de uso académico y piloto. No sustituye los sistemas de producción de la municipalidad sin completar la lista de verificación del manual de instalación</td>
+</tr>
+<tr>
+<td>Responsable del sistema</td>
+<td><strong>[Completar: nombre y cargo]</strong></td>
+</tr>
+<tr>
+<td>Soporte</td>
+<td><strong>[Completar: correo y anexo]</strong></td>
+</tr>
+<tr>
+<td>Responsable de seguridad</td>
+<td><strong>[Completar: nombre y cargo]</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Introducción y descripción del sistema</h2>
+<h3>2.1 Problema que atiende</h3>
+<p>La red de la Municipalidad Distrital de Alto Selva Alegre creció sin un inventario centralizado y sin una política de segmentación verificable. En la documentación de origen se identificaron, entre otros, los siguientes problemas:</p>
+<ul>
+<li>No existe un registro único y ordenado de sedes, VLAN, subredes, equipos, marcas, modelos, estados, ubicaciones e interfaces.</li>
+<li>Los mantenimientos se coordinan de forma verbal o dispersa; no hay trazabilidad de quién los realizó ni cuándo vence el siguiente.</li>
+<li>La red actual es plana (sin VLAN) y el diseño propuesto (VLAN 10, 20, 30, 40, 50 y 99) no se puede validar antes de aplicarlo.</li>
+<li>Las listas de control de acceso (ACL) del informe se aplicaron con una postura de “permitir por defecto”, lo que deja pasar tráfico no autorizado.</li>
+<li>No hay evidencia reproducible de las pruebas de conectividad ni un registro de los cambios realizados.</li>
+</ul>
+<h3>2.2 Objetivo principal</h3>
+<p>Proporcionar a la municipalidad un sistema seguro, ordenado y reproducible para <strong>inventariar la red</strong>, <strong>gestionar los mantenimientos</strong>, <strong>administrar usuarios con roles</strong> y <strong>probar las ACL antes de aplicarlas</strong>, dejando auditoría de cada cambio.</p>
+<h3>2.3 Objetivos específicos</h3>
+<ol>
+<li>Centralizar el inventario de ubicaciones, VLAN, subredes, dispositivos e interfaces.</li>
+<li>Registrar y dar seguimiento a los mantenimientos preventivos, correctivos y de inspección.</li>
+<li>Aplicar autenticación, roles y permisos directamente en la base de datos.</li>
+<li>Simular y comparar las ACL del informe (v1) con una propuesta de denegación por defecto (v2).</li>
+<li>Generar configuraciones IOS y un plan de pruebas para Cisco Packet Tracer.</li>
+<li>Mantener una bitácora inmutable y copias de seguridad cifradas.</li>
+</ol>
+<h3>2.4 Principales funcionalidades</h3>
+<table>
+<thead>
+<tr>
+<th>Módulo</th>
+<th>Funcionalidad</th>
+<th>Roles que la usan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inventario</td>
+<td>Consultar equipos, filtrar por tipo, estado o nombre y ver el detalle con interfaces</td>
+<td>Consulta, Técnico, Administrador</td>
+</tr>
+<tr>
+<td>Diseño de red</td>
+<td>Consultar VLAN y subredes, capacidad y ocupación</td>
+<td>Consulta, Técnico, Administrador</td>
+</tr>
+<tr>
+<td>Mantenimientos</td>
+<td>Consultar todos los mantenimientos y los próximos vencimientos</td>
+<td>Consulta, Técnico, Administrador</td>
+</tr>
+<tr>
+<td>Mantenimientos</td>
+<td>Programar un mantenimiento y cambiar su estado</td>
+<td>Técnico, Administrador</td>
+</tr>
+<tr>
+<td>Inventario</td>
+<td>Registrar un dispositivo nuevo</td>
+<td>Administrador</td>
+</tr>
+<tr>
+<td>Usuarios</td>
+<td>Crear usuarios y listarlos sin exponer contraseñas</td>
+<td>Administrador</td>
+</tr>
+<tr>
+<td>Seguridad de red</td>
+<td>Ejecutar el simulador de ACL, regenerar configuraciones y guardar resultados</td>
+<td>Administrador / responsable de red</td>
+</tr>
+<tr>
+<td>Seguridad de la cuenta</td>
+<td>Cambiar la propia contraseña y cerrar sesión</td>
+<td>Todos</td>
+</tr>
+<tr>
+<td>Operación</td>
+<td>Copias de seguridad cifradas, verificación de integridad y prueba de restauración</td>
+<td>DBA / Administrador</td>
+</tr>
+</tbody>
+</table>
+<h3>2.5 Usuarios a los que está dirigido</h3>
+<table>
+<thead>
+<tr>
+<th>Usuario</th>
+<th>Necesidad principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Personal de consulta</td>
+<td>Saber qué equipos existen, dónde están y cuándo toca mantenerlos</td>
+</tr>
+<tr>
+<td>Personal técnico de soporte y redes</td>
+<td>Programar y documentar mantenimientos</td>
+</tr>
+<tr>
+<td>Responsable de red y de TI</td>
+<td>Administrar usuarios, equipos y la seguridad de la red</td>
+</tr>
+<tr>
+<td>Administrador de la base de datos</td>
+<td>Instalar, respaldar, restaurar y mantener la plataforma</td>
+</tr>
+<tr>
+<td>Autoridades y auditores</td>
+<td>Revisar evidencia, reportes y trazabilidad de cambios</td>
+</tr>
+</tbody>
+</table>
+<h3>2.6 Tipo de solución desarrollada</h3>
+<p>El sistema es una <strong>solución de escritorio basada en consola (CLI)</strong> compuesta por tres capas:</p>
+<ol>
+<li><strong>Cliente de consola:</strong> PowerShell 5.1 o 7 con el módulo <code>RedCli.psm1</code>.</li>
+<li><strong>Servicio web (API REST):</strong> Node.js 20 con Express, que valida, autentica y autoriza.</li>
+<li><strong>Base de datos:</strong> PostgreSQL 16 con el esquema <code>infra</code>, reglas de integridad, RLS y auditoría.</li>
+</ol>
+<p>Adicionalmente incluye <strong>herramientas de línea de comandos en Node.js</strong> para simular ACL, generar configuraciones IOS y producir un plan de pruebas para Cisco Packet Tracer.</p>
+<blockquote>
+<p><strong>Importante:</strong> esta versión <strong>no tiene interfaz web ni aplicación móvil</strong>. La “pantalla” del usuario es la consola de PowerShell. La API se consume desde la consola y no está pensada para ser abierta directamente en un navegador. La administración avanzada de la base se realiza con pgAdmin 4.</p>
+</blockquote>
+<h3>2.7 Alcance y limitaciones</h3>
+<table>
+<thead>
+<tr>
+<th>El sistema sí hace</th>
+<th>El sistema no hace</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inventario de sedes, VLAN, subredes, dispositivos e interfaces</td>
+<td>Monitoreo en tiempo real ni alertas de caída</td>
+</tr>
+<tr>
+<td>Mantenimientos con responsable, fechas y estados</td>
+<td>Configurar routers o switches por sí solo</td>
+</tr>
+<tr>
+<td>Usuarios, roles, sesiones, bloqueo y auditoría</td>
+<td>Autenticación en dos pasos (MFA)</td>
+</tr>
+<tr>
+<td>Simulación y pruebas de ACL v1 y v2</td>
+<td>Simular NAT/PAT ni el estado real de TCP</td>
+</tr>
+<tr>
+<td>Generación de configuración IOS y plan para Packet Tracer</td>
+<td>Sustituir al firewall FortiGate real</td>
+</tr>
+<tr>
+<td>Copias de seguridad cifradas y prueba de restauración</td>
+<td>Recuperación de contraseña por correo</td>
+</tr>
+<tr>
+<td>Interfaz de consola y API REST</td>
+<td>Interfaz web o aplicación móvil</td>
+</tr>
+</tbody>
+</table>
+<p>Otras limitaciones conocidas:</p>
+<ul>
+<li>Las ubicaciones, interfaces, enlaces y parte del diseño se registran con SQL en pgAdmin; la consola registra dispositivos, mantenimientos y usuarios.</li>
+<li>Los equipos del Diario no tienen fecha de instalación ni IP de servidor confirmada, por lo que algunas listas aparecen vacías al inicio.</li>
+<li>Los scripts de Windows (copias de seguridad, tarea programada, BitLocker) siguen la documentación estándar, pero no se probaron exhaustivamente en Windows.</li>
+<li>El simulador de ACL comprueba la lógica de las listas, no la sintaxis exacta de cada versión de Packet Tracer.</li>
+</ul>
+<hr />
+<h2>3. Requisitos para el uso del sistema</h2>
+<h3>3.1 Dispositivos compatibles</h3>
+<table>
+<thead>
+<tr>
+<th>Elemento</th>
+<th>Mínimo</th>
+<th>Recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Equipo</td>
+<td>PC o portátil x64</td>
+<td>PC o portátil x64 con 8 GB de RAM</td>
+</tr>
+<tr>
+<td>Procesador</td>
+<td>2 núcleos</td>
+<td>4 núcleos</td>
+</tr>
+<tr>
+<td>Memoria RAM</td>
+<td>4 GB</td>
+<td>8 GB</td>
+</tr>
+<tr>
+<td>Espacio libre</td>
+<td>500 MB para la consola y utilidades</td>
+<td>2 GB (incluye pgAdmin y herramientas)</td>
+</tr>
+<tr>
+<td>Pantalla</td>
+<td>1024 × 768</td>
+<td>1920 × 1080</td>
+</tr>
+<tr>
+<td>Red</td>
+<td>Conexión a la LAN institucional o VPN</td>
+<td>Conexión cableada o Wi-Fi estable</td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 Sistemas operativos compatibles</h3>
+<table>
+<thead>
+<tr>
+<th>Sistema</th>
+<th>Compatibilidad</th>
+<th>Observación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows 10 (21H2 o superior)</td>
+<td>Sí</td>
+<td>Entorno previsto por el proyecto</td>
+</tr>
+<tr>
+<td>Windows 11</td>
+<td>Sí</td>
+<td>Entorno previsto por el proyecto</td>
+</tr>
+<tr>
+<td>Windows Server 2019/2022</td>
+<td>Sí, para el servidor</td>
+<td>Solo para la API y PostgreSQL</td>
+</tr>
+<tr>
+<td>Linux (Ubuntu 22.04/Debian 12)</td>
+<td>Sí, para el servidor y las pruebas</td>
+<td>Los comandos SQL, Node y ACL se probaron en Linux</td>
+</tr>
+<tr>
+<td>macOS</td>
+<td>No validado</td>
+<td>No forma parte del alcance de la versión 1.0</td>
+</tr>
+</tbody>
+</table>
+<h3>3.3 Navegadores recomendados</h3>
+<p>La operación normal <strong>no requiere navegador</strong>. Solo se usa un navegador para:</p>
+<ul>
+<li><strong>pgAdmin 4</strong>, herramienta de administración de PostgreSQL.</li>
+<li>Consultar la documentación o descargar actualizaciones.</li>
+</ul>
+<p>Navegadores recomendados: <strong>Microsoft Edge, Google Chrome o Mozilla Firefox en su versión estable actualizada</strong>. No se debe usar Internet Explorer.</p>
+<h3>3.4 Requisitos de conexión a Internet</h3>
+<table>
+<thead>
+<tr>
+<th>Escenario</th>
+<th>Requisito</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Uso dentro de la municipalidad</td>
+<td>No requiere Internet; basta con acceso a la LAN donde está la API</td>
+</tr>
+<tr>
+<td>Uso remoto</td>
+<td>Requiere VPN institucional o publicación segura con HTTPS</td>
+</tr>
+<tr>
+<td>Instalación y actualizaciones</td>
+<td>Requiere Internet para <code>winget</code>, <code>npm</code> y actualizaciones del sistema</td>
+</tr>
+<tr>
+<td>Copias de seguridad externas</td>
+<td>Requiere acceso al almacenamiento externo o nube cifrada definida por la institución</td>
+</tr>
+</tbody>
+</table>
+<p>Ancho de banda: la API transporta JSON pequeño; <strong>1 Mbps</strong> es suficiente para la operación normal. La latencia debe ser menor a 200 ms para una experiencia fluida.</p>
+<h3>3.5 Aplicaciones o herramientas adicionales</h3>
+<table>
+<thead>
+<tr>
+<th>Herramienta</th>
+<th>¿Obligatoria?</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PowerShell 7 (o Windows PowerShell 5.1)</td>
+<td>Sí</td>
+<td>Ejecutar los comandos del sistema</td>
+</tr>
+<tr>
+<td>Módulo <code>RedCli.psm1</code></td>
+<td>Sí</td>
+<td>Interfaz de usuario del sistema</td>
+</tr>
+<tr>
+<td>Excel o LibreOffice Calc</td>
+<td>Opcional</td>
+<td>Abrir los archivos CSV exportados</td>
+</tr>
+<tr>
+<td>pgAdmin 4</td>
+<td>Opcional para el usuario; necesaria para el DBA</td>
+<td>Administrar la base de datos</td>
+</tr>
+<tr>
+<td>Node.js 20</td>
+<td>Solo para el administrador de red</td>
+<td>Ejecutar el simulador y generador de ACL</td>
+</tr>
+<tr>
+<td>GnuPG (Gpg4win)</td>
+<td>Solo para el DBA</td>
+<td>Copias de seguridad cifradas</td>
+</tr>
+<tr>
+<td>Cisco Packet Tracer</td>
+<td>Solo para el responsable de red</td>
+<td>Probar la configuración en el simulador</td>
+</tr>
+</tbody>
+</table>
+<h3>3.6 Requisitos de acceso, registro o autenticación</h3>
+<ul>
+<li>El acceso es <strong>solo por invitación</strong>: no existe registro público de usuarios.</li>
+<li>Un administrador crea la cuenta y entrega una contraseña temporal por un canal seguro.</li>
+<li>El correo debe ser institucional y único.</li>
+<li>La contraseña debe tener <strong>12 o más caracteres</strong>, con mayúscula, minúscula, número y símbolo, y un máximo de 72 bytes.</li>
+<li>La cuenta se bloquea <strong>15 minutos</strong> tras <strong>5 intentos fallidos</strong> consecutivos.</li>
+<li>La sesión se cierra automáticamente tras <strong>30 minutos de inactividad</strong> o a las <strong>8 horas</strong> de su creación.</li>
+<li>La sesión se invalida de inmediato si la cuenta se desactiva o si se cambia la contraseña.</li>
+</ul>
+<h3>3.7 Matriz de compatibilidad resumida</h3>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Versión mínima</th>
+<th>Versión probada / recomendada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PowerShell</td>
+<td>5.1</td>
+<td>7.x</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>13</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td>20</td>
+<td>20 LTS o superior</td>
+</tr>
+<tr>
+<td>Express</td>
+<td>4.x</td>
+<td>4.22.3</td>
+</tr>
+<tr>
+<td>Navegador (pgAdmin)</td>
+<td>Última versión estable</td>
+<td>Edge, Chrome o Firefox actualizados</td>
+</tr>
+<tr>
+<td>GnuPG</td>
+<td>2.2</td>
+<td>2.4</td>
+</tr>
+<tr>
+<td>Packet Tracer</td>
+<td>8.x</td>
+<td>Versión usada en el curso</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. Acceso e inicio de sesión</h2>
+<h3>4.1 Dirección web o procedimiento para abrir la aplicación</h3>
+<p>No hay una página web de inicio de sesión. El acceso se realiza desde <strong>PowerShell</strong> contra la dirección de la API que indique el administrador:</p>
+<table>
+<thead>
+<tr>
+<th>Entorno</th>
+<th>Dirección de ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Desarrollo local</td>
+<td><code>http://127.0.0.1:3000</code></td>
+</tr>
+<tr>
+<td>Servidor de pruebas</td>
+<td><code>http://servidor:3000</code></td>
+</tr>
+<tr>
+<td>Producción institucional</td>
+<td><code>https://red.altoselvaalegre.gob.pe</code></td>
+</tr>
+</tbody>
+</table>
+<p>El administrador debe entregar al usuario:</p>
+<ol>
+<li>La dirección exacta de la API.</li>
+<li>Su correo institucional.</li>
+<li>Su contraseña temporal.</li>
+<li>La ruta donde está instalado el proyecto (por ejemplo, <code>C:\proyecto_red</code>).</li>
+</ol>
+<h3>4.2 Preparación de la consola (solo la primera vez)</h3>
+<ol>
+<li>Instalar <strong>PowerShell 7</strong> si no está disponible:</li>
+</ol>
+<p><code>powershell
+   winget install Microsoft.PowerShell</code></p>
+<ol start="2">
+<li>Abrir <strong>PowerShell 7</strong> desde el menú Inicio.</li>
+<li>Permitir la ejecución de scripts firmados o locales, solo para el usuario actual:</li>
+</ol>
+<p><code>powershell
+   Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code></p>
+<ol start="4">
+<li>Cargar el módulo del sistema:</li>
+</ol>
+<p><code>powershell
+   Import-Module C:\proyecto_red\scripts\RedCli.psm1 -Force</code></p>
+<ol start="5">
+<li>Comprobar que los comandos están disponibles:</li>
+</ol>
+<p><code>powershell
+   Get-Command -Module RedCli</code></p>
+<p><strong>Resultado esperado:</strong> una lista que incluye <code>Connect-Red</code>, <code>Disconnect-Red</code>, <code>Get-RedDispositivo</code>, <code>Get-RedVlan</code>, <code>Get-RedSubred</code>, <code>Get-RedMantenimiento</code>, entre otros.</p>
+<blockquote>
+<p><strong>Cada vez que se abra una ventana nueva de PowerShell</strong> se debe repetir el paso 4. Si se cierra la ventana, la sesión y el módulo se pierden.</p>
+</blockquote>
+<h3>4.3 Registro de nuevos usuarios</h3>
+<p>No existe auto-registro. El procedimiento es:</p>
+<ol>
+<li>El usuario solicita el alta al administrador del sistema por el canal institucional.</li>
+<li>El administrador verifica la identidad y el rol que corresponde.</li>
+<li>El administrador ejecuta <code>New-RedUsuario</code> (ver sección 6.13) y entrega la contraseña temporal por un canal seguro, nunca por correo masivo ni mensajería pública.</li>
+<li>El usuario inicia sesión y <strong>cambia la contraseña en el primer ingreso</strong> con <code>Set-RedContrasena</code> (ver sección 6.12).</li>
+</ol>
+<h3>4.4 Inicio de sesión</h3>
+<ol>
+<li>Abrir PowerShell 7.</li>
+<li>Cargar el módulo:</li>
+</ol>
+<p><code>powershell
+   Import-Module C:\proyecto_red\scripts\RedCli.psm1 -Force</code></p>
+<ol start="3">
+<li>Ejecutar el comando de conexión, reemplazando la dirección y el correo por los datos entregados:</li>
+</ol>
+<p><code>powershell
+   Connect-Red -Url http://127.0.0.1:3000 -Correo su.nombre@altoselvaalegre.gob.pe</code></p>
+<ol start="4">
+<li>Escribir la contraseña cuando se solicite. <strong>No se muestra nada en pantalla mientras se escribe</strong>; es el comportamiento normal de PowerShell por seguridad.</li>
+</ol>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Inicio de sesión en el sistema" src="capturas/u01_login.png" /></p>
+<p><em>Figura 1. Inicio de sesión correcto. La columna <code>Rol</code> debe coincidir con el rol asignado.</em></p>
+<p><strong>Resultado esperado:</strong> se muestra el identificador del usuario, su rol y la dirección del servidor. Si el rol mostrado no es el esperado, el usuario debe detener el trabajo y comunicarse con el administrador.</p>
+<p><strong>Errores frecuentes al iniciar sesión:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Mensaje</th>
+<th>Significado</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Correo o contraseña incorrectos…</em></td>
+<td>Algún dato está mal, la cuenta está desactivada o bloqueada</td>
+<td>Revisar mayúsculas, teclado y correo. Tras 5 fallos, esperar 15 minutos o pedir al administrador que restablezca</td>
+</tr>
+<tr>
+<td><em>No se pudo contactar con el servidor…</em></td>
+<td>La dirección es incorrecta o la API está apagada</td>
+<td>Verificar la dirección con el administrador y que el servicio esté activo</td>
+</tr>
+<tr>
+<td><em>Demasiados intentos…</em></td>
+<td>Se superó el límite de intentos</td>
+<td>Esperar unos minutos</td>
+</tr>
+<tr>
+<td><em>No se encontró el token de seguridad (CSRF)…</em></td>
+<td>La sesión no se estableció correctamente</td>
+<td>Volver a ejecutar <code>Connect-Red</code></td>
+</tr>
+</tbody>
+</table>
+<h3>4.5 Recuperación de contraseña</h3>
+<p>La versión 1.0 <strong>no envía correos de recuperación</strong> y no permite el autoservicio. El procedimiento es:</p>
+<ol>
+<li>El usuario comunica al administrador que olvidó su contraseña o que su cuenta está bloqueada.</li>
+<li>El administrador verifica la identidad del usuario por un canal institucional.</li>
+<li>El administrador restablece la contraseña y desbloquea la cuenta mediante el procedimiento administrativo de la base de datos (ver manual de instalación, anexo D).</li>
+<li>El administrador entrega una contraseña temporal por un canal seguro.</li>
+<li>El usuario inicia sesión y la cambia de inmediato con <code>Set-RedContrasena</code>.</li>
+</ol>
+<blockquote>
+<p>Si la cuenta está bloqueada por 5 intentos fallidos, el desbloqueo automático ocurre a los 15 minutos. Si el usuario no recuerda la contraseña, el restablecimiento debe hacerlo un administrador.</p>
+</blockquote>
+<h3>4.6 Cierre de sesión</h3>
+<ol>
+<li>Ejecutar:</li>
+</ol>
+<p><code>powershell
+   Disconnect-Red</code></p>
+<ol start="2">
+<li>Verificar el mensaje <strong>“Sesión cerrada.”</strong></li>
+</ol>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Cierre de sesión" src="capturas/u14_logout.png" /></p>
+<p><em>Figura 2. Cierre de sesión correcto. Después del cierre, los comandos de consulta exigen una nueva conexión.</em></p>
+<p><strong>Resultado esperado:</strong> la sesión se invalida también en el servidor. Si se intenta consultar sin sesión, el sistema responde <em>“No hay sesión activa…”</em>.</p>
+<blockquote>
+<p>Cerrar la ventana de PowerShell no siempre invalida la sesión en el servidor; por eso se debe usar siempre <code>Disconnect-Red</code>, especialmente en equipos compartidos.</p>
+</blockquote>
+<h3>4.7 Tipos de usuarios y permisos disponibles</h3>
+<table>
+<thead>
+<tr>
+<th>Rol</th>
+<th>Quién es</th>
+<th>Puede hacer</th>
+<th>No puede hacer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Consulta</strong></td>
+<td>Personal que necesita información de la red</td>
+<td>Ver equipos, VLAN, subredes y mantenimientos; exportar a CSV; cambiar su propia contraseña</td>
+<td>Crear, editar ni borrar datos; programar mantenimientos; gestionar usuarios</td>
+</tr>
+<tr>
+<td><strong>Técnico</strong></td>
+<td>Personal de soporte y redes</td>
+<td>Todo lo de Consulta; programar mantenimientos a su nombre; actualizar el estado de <strong>sus propios</strong> mantenimientos</td>
+<td>Registrar equipos; gestionar usuarios; modificar mantenimientos de otras personas</td>
+</tr>
+<tr>
+<td><strong>Administrador</strong></td>
+<td>Responsable de red y de TI</td>
+<td>Todo lo anterior; registrar equipos; crear y listar usuarios; ejecutar y guardar pruebas de ACL</td>
+<td>Cambiar su propio rol ni desactivar su propia cuenta; leer contraseñas</td>
+</tr>
+<tr>
+<td><strong>Administrador de la base de datos (DBA)</strong></td>
+<td>Quien instala y respalda el sistema</td>
+<td>Acceso directo a PostgreSQL para instalación, respaldo, restauración y funciones administrativas</td>
+<td>No es un rol de la aplicación; no debe usarse para la operación diaria</td>
+</tr>
+</tbody>
+</table>
+<p>Los permisos se imponen en la base de datos con <strong>Row Level Security (RLS)</strong>: aunque alguien intente saltarse la consola, un usuario de consulta no puede modificar el inventario ni un técnico puede editar mantenimientos ajenos.</p>
+<hr />
+<h2>5. Descripción de la interfaz</h2>
+<h3>5.1 Naturaleza de la interfaz</h3>
+<p>La interfaz del sistema es una <strong>consola de comandos</strong>. No hay botones, ventanas ni formularios gráficos. Cada “pantalla” es la salida de un comando y cada “formulario” es el conjunto de parámetros del comando.</p>
+<table>
+<thead>
+<tr>
+<th>Elemento de una interfaz gráfica</th>
+<th>Equivalente en este sistema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pantalla principal</td>
+<td>Ventana de PowerShell con el módulo cargado y la sesión iniciada</td>
+</tr>
+<tr>
+<td>Menú de navegación</td>
+<td>Lista de comandos disponibles según el rol</td>
+</tr>
+<tr>
+<td>Formulario</td>
+<td>Parámetros del comando (<code>-Nombre</code>, <code>-Tipo</code>, <code>-Fecha</code>, etc.)</td>
+</tr>
+<tr>
+<td>Botón Aceptar</td>
+<td>Tecla <strong>Enter</strong> después de escribir el comando</td>
+</tr>
+<tr>
+<td>Botón Cancelar</td>
+<td><strong>Ctrl + C</strong> para interrumpir un comando</td>
+</tr>
+<tr>
+<td>Campo obligatorio</td>
+<td>Parámetro marcado como <code>[Parameter(Mandatory)]</code>; PowerShell lo solicita si falta</td>
+</tr>
+<tr>
+<td>Ayuda en línea</td>
+<td><code>Get-Help &lt;comando&gt; -Examples</code></td>
+</tr>
+<tr>
+<td>Mensajes y notificaciones</td>
+<td>Texto devuelto por el comando o por el manejador de errores de <code>RedCli</code></td>
+</tr>
+</tbody>
+</table>
+<h3>5.2 Pantalla principal</h3>
+<p>La pantalla principal es la ventana de PowerShell. En ella se distinguen:</p>
+<ul>
+<li><strong>Prompt:</strong> indica la ruta actual, por ejemplo <code>PS C:\proyecto_red&gt;</code>.</li>
+<li><strong>Comando:</strong> línea que empieza con el nombre del comando (<code>Connect-Red</code>, <code>Get-RedDispositivo</code>, etc.).</li>
+<li><strong>Salida:</strong> tabla o lista con los datos solicitados.</li>
+<li><strong>Mensajes:</strong> texto informativo o de error.</li>
+</ul>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Consulta de equipos" src="capturas/u02_dispositivos.png" /></p>
+<p><em>Figura 3. Salida típica de una consulta. Las columnas se pueden elegir con <code>Format-Table</code>.</em></p>
+<h3>5.3 Menú de navegación (mapa de comandos)</h3>
+<table>
+<thead>
+<tr>
+<th>Necesidad</th>
+<th>Comando</th>
+<th>Roles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Iniciar sesión</td>
+<td><code>Connect-Red -Url … -Correo …</code></td>
+<td>Todos</td>
+</tr>
+<tr>
+<td>Ver quién soy</td>
+<td><code>Get-RedYo</code></td>
+<td>Todos</td>
+</tr>
+<tr>
+<td>Ver equipos</td>
+<td><code>Get-RedDispositivo [-Tipo] [-Estado] [-Nombre] [-Id]</code></td>
+<td>Todos</td>
+</tr>
+<tr>
+<td>Ver VLAN</td>
+<td><code>Get-RedVlan</code></td>
+<td>Todos</td>
+</tr>
+<tr>
+<td>Ver subredes</td>
+<td><code>Get-RedSubred</code></td>
+<td>Todos</td>
+</tr>
+<tr>
+<td>Ver mantenimientos</td>
+<td><code>Get-RedMantenimiento [-Proximos]</code></td>
+<td>Todos</td>
+</tr>
+<tr>
+<td>Programar mantenimiento</td>
+<td><code>New-RedMantenimiento -Dispositivo … -Descripcion … -Fecha …</code></td>
+<td>Técnico, Administrador</td>
+</tr>
+<tr>
+<td>Actualizar mantenimiento</td>
+<td><code>Set-RedMantenimiento -Id … -Estado … [-FechaRealizada …]</code></td>
+<td>Técnico, Administrador</td>
+</tr>
+<tr>
+<td>Registrar equipo</td>
+<td><code>New-RedDispositivo -Nombre … -Tipo …</code></td>
+<td>Administrador</td>
+</tr>
+<tr>
+<td>Listar usuarios</td>
+<td><code>Get-RedUsuario</code></td>
+<td>Administrador</td>
+</tr>
+<tr>
+<td>Crear usuario</td>
+<td><code>New-RedUsuario -Nombre … -Correo … -Rol …</code></td>
+<td>Administrador</td>
+</tr>
+<tr>
+<td>Cambiar mi contraseña</td>
+<td><code>Set-RedContrasena</code></td>
+<td>Todos</td>
+</tr>
+<tr>
+<td>Cerrar sesión</td>
+<td><code>Disconnect-Red</code></td>
+<td>Todos</td>
+</tr>
+<tr>
+<td>Ver ayuda</td>
+<td><code>Get-Help &lt;comando&gt; -Examples</code></td>
+<td>Todos</td>
+</tr>
+</tbody>
+</table>
+<h3>5.4 Formularios: parámetros de los comandos</h3>
+<p>Los parámetros más importantes son:</p>
+<table>
+<thead>
+<tr>
+<th>Parámetro</th>
+<th>Comando</th>
+<th>Valores admitidos</th>
+<th>Obligatorio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-Url</code></td>
+<td><code>Connect-Red</code></td>
+<td>Dirección de la API, con <code>http://</code> o <code>https://</code></td>
+<td>Sí</td>
+</tr>
+<tr>
+<td><code>-Correo</code></td>
+<td><code>Connect-Red</code></td>
+<td>Correo institucional</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td><code>-Contrasena</code></td>
+<td><code>Connect-Red</code>, <code>Set-RedContrasena</code>, <code>New-RedUsuario</code></td>
+<td>Texto seguro; si se omite, se solicita</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>-Tipo</code></td>
+<td><code>Get-RedDispositivo</code></td>
+<td><code>firewall</code>, <code>router</code>, <code>switch</code>, <code>access_point</code>, <code>servidor</code>, <code>ups</code>, <code>onu</code>, <code>radioenlace</code>, <code>modem</code>, <code>otro</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>-Estado</code></td>
+<td><code>Get-RedDispositivo</code></td>
+<td><code>operativo</code>, <code>en_mantenimiento</code>, <code>averiado</code>, <code>retirado</code>, <code>propuesto</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>-Nombre</code></td>
+<td><code>Get-RedDispositivo</code></td>
+<td>Texto o parte del nombre</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>-Id</code></td>
+<td><code>Get-RedDispositivo</code></td>
+<td>UUID del equipo</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>-Proximos</code></td>
+<td><code>Get-RedMantenimiento</code></td>
+<td>Interruptor</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>-Dispositivo</code></td>
+<td><code>New-RedMantenimiento</code></td>
+<td>Nombre exacto o UUID del equipo</td>
+<td>Sí</td>
+</tr>
+<tr>
+<td><code>-Descripcion</code></td>
+<td><code>New-RedMantenimiento</code></td>
+<td>Entre 3 y 1000 caracteres, sin <code>&lt;</code> ni <code>&gt;</code></td>
+<td>Sí</td>
+</tr>
+<tr>
+<td><code>-Fecha</code></td>
+<td><code>New-RedMantenimiento</code></td>
+<td>Formato <code>AAAA-MM-DD</code></td>
+<td>Sí</td>
+</tr>
+<tr>
+<td><code>-Tipo</code></td>
+<td><code>New-RedMantenimiento</code></td>
+<td><code>preventivo</code>, <code>correctivo</code>, <code>inspeccion</code></td>
+<td>No (por defecto <code>preventivo</code>)</td>
+</tr>
+<tr>
+<td><code>-Estado</code></td>
+<td><code>Set-RedMantenimiento</code></td>
+<td><code>programado</code>, <code>en_curso</code>, <code>completado</code>, <code>cancelado</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>-FechaRealizada</code></td>
+<td><code>Set-RedMantenimiento</code></td>
+<td><code>AAAA-MM-DD</code>; obligatoria si el estado es <code>completado</code></td>
+<td>Condicional</td>
+</tr>
+<tr>
+<td><code>-Rol</code></td>
+<td><code>New-RedUsuario</code></td>
+<td><code>consulta</code>, <code>tecnico</code>, <code>administrador</code></td>
+<td>No (por defecto <code>consulta</code>)</td>
+</tr>
+<tr>
+<td><code>-MantenimientoCadaMeses</code></td>
+<td><code>New-RedDispositivo</code></td>
+<td>Entero de 1 a 120</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3>5.5 Botones y controles principales</h3>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Enter</strong></td>
+<td>Ejecutar el comando escrito</td>
+</tr>
+<tr>
+<td><strong>Ctrl + C</strong></td>
+<td>Cancelar el comando en ejecución</td>
+</tr>
+<tr>
+<td><strong>Flecha arriba / abajo</strong></td>
+<td>Recuperar comandos anteriores</td>
+</tr>
+<tr>
+<td><strong>Tab</strong></td>
+<td>Autocompletar nombres de comandos y parámetros</td>
+</tr>
+<tr>
+<td><strong>Ctrl + L</strong></td>
+<td>Limpiar la pantalla (PowerShell 7)</td>
+</tr>
+<tr>
+<td><strong>Ctrl + R</strong></td>
+<td>Buscar en el historial de comandos (PowerShell 7)</td>
+</tr>
+<tr>
+<td><strong>Clic derecho</strong></td>
+<td>Pegar texto copiado en Windows Terminal / PowerShell</td>
+</tr>
+<tr>
+<td><strong>Ctrl + Mayús + V</strong></td>
+<td>Pegar en algunas terminales</td>
+</tr>
+</tbody>
+</table>
+<h3>5.6 Módulos o secciones disponibles</h3>
+<table>
+<thead>
+<tr>
+<th>Sección</th>
+<th>Qué muestra</th>
+<th>Comandos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identidad y sesión</td>
+<td>Usuario autenticado y rol</td>
+<td><code>Connect-Red</code>, <code>Get-RedYo</code>, <code>Disconnect-Red</code>, <code>Set-RedContrasena</code></td>
+</tr>
+<tr>
+<td>Inventario de equipos</td>
+<td>Nombre, tipo, marca, modelo, estado, sede, piso, ambiente</td>
+<td><code>Get-RedDispositivo</code>, <code>New-RedDispositivo</code></td>
+</tr>
+<tr>
+<td>Diseño de red</td>
+<td>VLAN y subredes, capacidad y ocupación</td>
+<td><code>Get-RedVlan</code>, <code>Get-RedSubred</code></td>
+</tr>
+<tr>
+<td>Mantenimientos</td>
+<td>Programados, en curso, completados, cancelados y próximos</td>
+<td><code>Get-RedMantenimiento</code>, <code>New-RedMantenimiento</code>, <code>Set-RedMantenimiento</code></td>
+</tr>
+<tr>
+<td>Usuarios</td>
+<td>Listado y alta de cuentas</td>
+<td><code>Get-RedUsuario</code>, <code>New-RedUsuario</code></td>
+</tr>
+<tr>
+<td>Seguridad de red (ACL)</td>
+<td>Simulación, generación de configuración y pruebas</td>
+<td><code>node probar_acls.js</code>, <code>node generar_config.js</code>, <code>node plan_pt.js</code></td>
+</tr>
+<tr>
+<td>Operación</td>
+<td>Respaldos y restauración</td>
+<td><code>backup.ps1</code>, <code>probar_restauracion.ps1</code> (DBA)</td>
+</tr>
+</tbody>
+</table>
+<h3>5.7 Mensajes y notificaciones</h3>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Ejemplo</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Informativo</td>
+<td><code>Sesión cerrada.</code></td>
+<td>La operación terminó correctamente</td>
+</tr>
+<tr>
+<td>Advertencia</td>
+<td><code>La sesión no es válida o caducó…</code></td>
+<td>Hay que volver a conectarse</td>
+</tr>
+<tr>
+<td>Error de permisos</td>
+<td><code>Su rol no permite esta acción…</code></td>
+<td>El rol no autoriza esa operación</td>
+</tr>
+<tr>
+<td>Error de datos</td>
+<td><code>Datos no válidos. Revise los valores indicados…</code></td>
+<td>Un campo no cumple las validaciones</td>
+</tr>
+<tr>
+<td>Error de servidor</td>
+<td><code>Error 500 del servidor…</code></td>
+<td>Falla interna; avisar a soporte con el mensaje y la hora</td>
+</tr>
+<tr>
+<td>Sin conexión</td>
+<td><code>No se pudo contactar con el servidor…</code></td>
+<td>La API no responde o la dirección es incorrecta</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. Procedimientos de uso de las funcionalidades</h2>
+<blockquote>
+<p><strong>Convención:</strong> los ejemplos usan datos de demostración. Reemplace correos, UUID, fechas y nombres por los de su institución. No copie contraseñas de ejemplo en producción.</p>
+</blockquote>
+<h3>6.1 Consultar todos los equipos (inventario)</h3>
+<p><strong>Propósito:</strong> obtener la lista completa de dispositivos registrados.<br />
+<strong>Requisitos previos:</strong> sesión iniciada.<br />
+<strong>Rol:</strong> Consulta, Técnico o Administrador.</p>
+<p><strong>Procedimiento:</strong></p>
+<ol>
+<li>Verificar la sesión con <code>Get-RedYo</code>.</li>
+<li>Ejecutar:</li>
+</ol>
+<p><code>powershell
+   Get-RedDispositivo | Format-Table Nombre, Tipo, Estado, Piso -AutoSize</code></p>
+<ol start="3">
+<li>Para ver todas las columnas disponibles:</li>
+</ol>
+<p><code>powershell
+   Get-RedDispositivo | Format-List</code></p>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Listado de servidores" src="capturas/u02_dispositivos.png" /></p>
+<p><em>Figura 4. Consulta de equipos filtrada por tipo <code>servidor</code>.</em></p>
+<p><strong>Resultado esperado:</strong> una tabla con los equipos, su tipo, estado y piso. La cantidad inicial documentada es de <strong>15 dispositivos</strong>.</p>
+<p><strong>Notas:</strong></p>
+<ul>
+<li>Si no ve ningún equipo, verifique que la sesión esté activa y que la API esté funcionando.</li>
+<li>La lista está limitada a 200 registros por consulta en la API.</li>
+</ul>
+<hr />
+<h3>6.2 Filtrar equipos por tipo, estado o nombre</h3>
+<p><strong>Propósito:</strong> localizar rápidamente un equipo o un grupo de equipos.<br />
+<strong>Requisitos previos:</strong> sesión iniciada.<br />
+<strong>Rol:</strong> Consulta, Técnico o Administrador.</p>
+<p><strong>Procedimiento:</strong></p>
+<ol>
+<li>Filtrar por tipo:</li>
+</ol>
+<p><code>powershell
+   Get-RedDispositivo -Tipo servidor | Format-Table Nombre, Tipo, Estado, Piso -AutoSize</code></p>
+<ol start="2">
+<li>Filtrar por estado:</li>
+</ol>
+<p><code>powershell
+   Get-RedDispositivo -Estado averiado</code></p>
+<ol start="3">
+<li>Buscar por parte del nombre:</li>
+</ol>
+<p><code>powershell
+   Get-RedDispositivo -Nombre FW</code></p>
+<ol start="4">
+<li>Combinar con las órdenes de PowerShell:</li>
+</ol>
+<p><code>powershell
+   Get-RedDispositivo | Where-Object Piso -eq 4 | Sort-Object Nombre | Format-Table Nombre, Tipo, Estado</code></p>
+<p><strong>Resultado esperado:</strong> solo los equipos que cumplen el filtro. Los tipos y estados válidos son los de la tabla 5.4.</p>
+<p><strong>Notas:</strong></p>
+<ul>
+<li>El parámetro <code>-Nombre</code> no distingue mayúsculas de minúsculas y acepta coincidencias parciales.</li>
+<li>Si escribe un tipo o estado no válido, PowerShell rechaza el comando antes de enviarlo a la API.</li>
+</ul>
+<hr />
+<h3>6.3 Consultar el detalle de un equipo y sus interfaces</h3>
+<p><strong>Propósito:</strong> ver marca, modelo, ubicación, observaciones e interfaces (IP y MAC).<br />
+<strong>Requisitos previos:</strong> sesión iniciada y conocer el nombre o el identificador del equipo.<br />
+<strong>Rol:</strong> Consulta, Técnico o Administrador.</p>
+<p><strong>Procedimiento:</strong></p>
+<ol>
+<li>Buscar el equipo:</li>
+</ol>
+<p><code>powershell
+   Get-RedDispositivo -Nombre FW</code></p>
+<ol start="2">
+<li>Ver el detalle por nombre:</li>
+</ol>
+<p><code>powershell
+   Get-RedDispositivo -Nombre FW | Format-List Nombre, Tipo, Marca, Modelo, Estado, Sede, Piso, Ambiente</code></p>
+<ol start="3">
+<li>Para ver las interfaces, usar el identificador (<code>Id</code>) del equipo:</li>
+</ol>
+<p><code>powershell
+   $equipo = Get-RedDispositivo -Nombre FW-FORTIGATE
+   Get-RedDispositivo -Id $equipo.Id</code></p>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Detalle de un equipo" src="capturas/u03_detalle.png" /></p>
+<p><em>Figura 5. Detalle de un equipo con su ubicación física.</em></p>
+<p><strong>Resultado esperado:</strong> ficha del equipo. Si el equipo tiene interfaces registradas, se muestran en una lista con nombre, IP y MAC.</p>
+<p><strong>Notas:</strong></p>
+<ul>
+<li>En la versión 1.0, las IP de los servidores del informe no están confirmadas y aparecen vacías.</li>
+<li>Si el identificador no es un UUID válido, la API responde con error de datos.</li>
+</ul>
+<hr />
+<h3>6.4 Consultar las VLAN</h3>
+<p><strong>Propósito:</strong> conocer las VLAN actuales y propuestas, su función y estado de diseño.<br />
+<strong>Requisitos previos:</strong> sesión iniciada.<br />
+<strong>Rol:</strong> Consulta, Técnico o Administrador.</p>
+<p><strong>Procedimiento:</strong></p>
+<pre><code class="language-powershell">Get-RedVlan | Format-Table -AutoSize
+</code></pre>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Listado de VLAN" src="capturas/u04_vlan.png" /></p>
+<p><em>Figura 6. VLAN registradas. La red actual es plana; las VLAN 10 a 99 son la propuesta TO-BE.</em></p>
+<p><strong>Resultado esperado:</strong> tabla con número, nombre, función y diseño (<code>actual</code> o <code>propuesto</code>).</p>
+<p><strong>Notas:</strong></p>
+<ul>
+<li>Todas las VLAN del proyecto figuran como <code>propuesto</code> porque la red actual no tiene segmentación.</li>
+<li>La VLAN 50 (Seguridad Ciudadana) se menciona en el informe, pero no tiene gateway definido.</li>
+</ul>
+<hr />
+<h3>6.5 Consultar las subredes y su ocupación</h3>
+<p><strong>Propósito:</strong> ver la capacidad de cada subred y cuántas IP están registradas.<br />
+<strong>Requisitos previos:</strong> sesión iniciada.<br />
+<strong>Rol:</strong> Consulta, Técnico o Administrador.</p>
+<p><strong>Procedimiento:</strong></p>
+<pre><code class="language-powershell">Get-RedSubred | Format-Table -AutoSize
+</code></pre>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Subredes y ocupación" src="capturas/u05_subredes.png" /></p>
+<p><em>Figura 7. Subredes actuales y propuestas, con capacidad y número de IP registradas.</em></p>
+<p><strong>Resultado esperado:</strong> tabla con red, diseño, función, capacidad de hosts e IP registradas.</p>
+<p><strong>Interpretación:</strong></p>
+<ul>
+<li><strong>Capacidad:</strong> número máximo de hosts de la subred. Una <code>/24</code> admite 254.</li>
+<li><strong>IPRegistradas:</strong> cuántas IP están anotadas en el sistema. Si es menor que las que se usan realmente, el inventario está incompleto.</li>
+<li>Si <code>IPRegistradas</code> se acerca a <code>Capacidad</code>, la subred se está quedando corta y debe redimensionarse.</li>
+</ul>
+<p><strong>Nota:</strong> los datos iniciales muestran 8 subredes (3 actuales y 5 propuestas) y 0 IP registradas, porque el informe no asigna IP a cada servidor.</p>
+<hr />
+<h3>6.6 Consultar los mantenimientos</h3>
+<p><strong>Propósito:</strong> ver todos los mantenimientos y su estado.<br />
+<strong>Requisitos previos:</strong> sesión iniciada.<br />
+<strong>Rol:</strong> Consulta, Técnico o Administrador.</p>
+<p><strong>Procedimiento:</strong></p>
+<pre><code class="language-powershell">Get-RedMantenimiento | Format-Table Dispositivo, Tipo, Estado, Programada, Realizada -AutoSize
+</code></pre>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Listado de mantenimientos" src="capturas/u06_mantenimientos.png" /></p>
+<p><em>Figura 8. Mantenimientos con tipo, estado y fechas.</em></p>
+<p><strong>Resultado esperado:</strong> tabla con dispositivo, tipo, descripción, estado, fecha programada, fecha realizada e identificador.</p>
+<p><strong>Estados posibles:</strong> <code>programado</code>, <code>en_curso</code>, <code>completado</code>, <code>cancelado</code>.<br />
+<strong>Tipos posibles:</strong> <code>preventivo</code>, <code>correctivo</code>, <code>inspeccion</code>.</p>
+<hr />
+<h3>6.7 Consultar los próximos vencimientos</h3>
+<p><strong>Propósito:</strong> anticipar los mantenimientos que vencen según la periodicidad de cada equipo.<br />
+<strong>Requisitos previos:</strong> sesión iniciada.<br />
+<strong>Rol:</strong> Consulta, Técnico o Administrador.</p>
+<p><strong>Procedimiento:</strong></p>
+<pre><code class="language-powershell">Get-RedMantenimiento -Proximos | Format-Table Dispositivo, UltimoMantenimiento, Proximo
+</code></pre>
+<p><strong>Resultado esperado:</strong> lista ordenada de equipos con la fecha del último mantenimiento completado (o de instalación) y la fecha del próximo.</p>
+<p><strong>Cómo se calcula:</strong></p>
+<pre><code>Próximo = (último mantenimiento completado o fecha de instalación)
+          + periodicidad del equipo (por ejemplo, 12 meses)
+</code></pre>
+<p><strong>Nota:</strong> si la lista aparece vacía al inicio, <strong>no es un error</strong>. Se llena cuando un equipo tiene fecha de instalación o un mantenimiento completado. Avise al administrador si falta esa información.</p>
+<hr />
+<h3>6.8 Programar un mantenimiento</h3>
+<p><strong>Propósito:</strong> registrar un trabajo futuro y dejar constancia de que usted es el responsable.<br />
+<strong>Requisitos previos:</strong> sesión iniciada con rol <strong>Técnico</strong> o <strong>Administrador</strong>; conocer el nombre exacto del equipo.<br />
+<strong>Rol:</strong> Técnico o Administrador.</p>
+<p><strong>Procedimiento:</strong></p>
+<ol>
+<li>Consultar el nombre exacto del equipo:</li>
+</ol>
+<p><code>powershell
+   Get-RedDispositivo | Format-Table Nombre, Tipo, Estado -AutoSize</code></p>
+<ol start="2">
+<li>Programar el mantenimiento:</li>
+</ol>
+<p><code>powershell
+   New-RedMantenimiento -Dispositivo FW-FORTIGATE-90G `
+     -Descripcion 'Revision anual: limpieza, actualizacion de firmware y respaldo de configuracion' `
+     -Fecha 2026-12-10</code></p>
+<ol start="3">
+<li>Guardar el <code>Id</code> que devuelve el sistema; lo necesitará para actualizarlo.</li>
+</ol>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Programar mantenimiento" src="capturas/u07_nuevo_mant.png" /></p>
+<p><em>Figura 9. Mantenimiento programado correctamente.</em></p>
+<p><strong>Resultado esperado:</strong> un objeto con <code>Id</code>, <code>Dispositivo</code>, <code>Programada</code> y <code>Estado = programado</code>.</p>
+<p><strong>Reglas:</strong></p>
+<ul>
+<li><code>-Dispositivo</code>: nombre exacto o UUID.</li>
+<li><code>-Fecha</code>: formato <code>AAAA-MM-DD</code>; otro formato se rechaza.</li>
+<li><code>-Tipo</code>: <code>preventivo</code> (por defecto), <code>correctivo</code> o <code>inspeccion</code>.</li>
+<li><code>-Descripcion</code>: entre 3 y 1000 caracteres, sin <code>&lt;</code> ni <code>&gt;</code>.</li>
+<li>El responsable es siempre quien tiene la sesión; no se puede indicar a otra persona.</li>
+</ul>
+<hr />
+<h3>6.9 Actualizar el estado de un mantenimiento</h3>
+<p><strong>Propósito:</strong> reflejar el avance real del trabajo y recalcular el próximo vencimiento.<br />
+<strong>Requisitos previos:</strong> sesión iniciada; ser el responsable del mantenimiento o administrador; tener el <code>Id</code>.<br />
+<strong>Rol:</strong> Técnico o Administrador.</p>
+<p><strong>Procedimiento:</strong></p>
+<ol>
+<li>Al comenzar el trabajo:</li>
+</ol>
+<p><code>powershell
+   Set-RedMantenimiento -Id 53e2cf8e-bc10-4c3f-bd65-9b06c30849c9 -Estado en_curso</code></p>
+<ol start="2">
+<li>Al terminar, indicar obligatoriamente la fecha real:</li>
+</ol>
+<p><code>powershell
+   Set-RedMantenimiento -Id 53e2cf8e-bc10-4c3f-bd65-9b06c30849c9 `
+     -Estado completado -FechaRealizada 2026-12-10</code></p>
+<ol start="3">
+<li>Si se cancela:</li>
+</ol>
+<p><code>powershell
+   Set-RedMantenimiento -Id 53e2cf8e-bc10-4c3f-bd65-9b06c30849c9 -Estado cancelado</code></p>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Actualizar mantenimiento" src="capturas/u08_actualizar_mant.png" /></p>
+<p><em>Figura 10. Mantenimiento marcado como completado con su fecha real.</em></p>
+<p><strong>Resultado esperado:</strong> el objeto actualizado con <code>Id</code>, <code>Estado</code> y <code>Realizada</code>.</p>
+<p><strong>Notas:</strong></p>
+<ul>
+<li>Solo puede cambiar <strong>sus propios</strong> mantenimientos. Si intenta cambiar el de otra persona verá <em>“No se encontró el registro, o su rol no puede verlo”</em>.</li>
+<li>Al completar un mantenimiento, el sistema recalcula el próximo vencimiento de ese equipo.</li>
+<li>Si el estado es <code>completado</code> y falta <code>-FechaRealizada</code>, la consola lo rechaza antes de enviar la solicitud.</li>
+</ul>
+<hr />
+<h3>6.10 Exportar la información a Excel (CSV)</h3>
+<p><strong>Propósito:</strong> llevar el inventario a una hoja de cálculo para análisis o reportes.<br />
+<strong>Requisitos previos:</strong> sesión iniciada; carpeta de destino con permisos de escritura.<br />
+<strong>Rol:</strong> Consulta, Técnico o Administrador.</p>
+<p><strong>Procedimiento:</strong></p>
+<pre><code class="language-powershell">New-Item -ItemType Directory -Force C:\Temp | Out-Null
+Get-RedDispositivo | Export-Csv C:\Temp\dispositivos.csv -NoTypeInformation -Encoding UTF8
+</code></pre>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Exportar a CSV" src="capturas/u09_exportar.png" /></p>
+<p><em>Figura 11. Exportación del inventario a un archivo CSV codificado en UTF-8.</em></p>
+<p><strong>Resultado esperado:</strong> archivo <code>C:\Temp\dispositivos.csv</code> que se abre en Excel con <em>Datos → Desde texto/CSV</em>, codificación UTF-8, para conservar las tildes.</p>
+<p><strong>Advertencia:</strong> el archivo contiene información sensible de la red (IP, ubicaciones). No lo envíe por canales públicos ni lo deje en equipos compartidos.</p>
+<hr />
+<h3>6.11 Consultar quién soy y qué rol tengo</h3>
+<p><strong>Propósito:</strong> confirmar la identidad y el rol de la sesión actual.<br />
+<strong>Requisitos previos:</strong> sesión iniciada.</p>
+<pre><code class="language-powershell">Get-RedYo
+</code></pre>
+<p><strong>Resultado esperado:</strong> identificador, rol y servidor. Útil para verificar que no se está usando una cuenta ajena.</p>
+<hr />
+<h3>6.12 Cambiar la propia contraseña</h3>
+<p><strong>Propósito:</strong> reemplazar la contraseña temporal o una contraseña comprometida.<br />
+<strong>Requisitos previos:</strong> sesión iniciada.<br />
+<strong>Rol:</strong> Todos.</p>
+<p><strong>Procedimiento:</strong></p>
+<pre><code class="language-powershell">Set-RedContrasena
+</code></pre>
+<ol>
+<li>Escribir la contraseña actual (no se muestra).</li>
+<li>Escribir la nueva contraseña (no se muestra).</li>
+<li>Confirmar el mensaje <strong>“Contraseña cambiada. Se cerraron sus sesiones: ejecute Connect-Red otra vez.”</strong></li>
+</ol>
+<p><strong>Requisitos de la nueva contraseña:</strong> 12 o más caracteres, con mayúscula, minúscula, número y símbolo; máximo 72 bytes.</p>
+<p><strong>Ejemplo de construcción segura:</strong> piense en una frase y transfórmela, por ejemplo <em>“Mi hijo nació en Arequipa en 2015”</em> → <code>Mh-nacio-en-AQP-2015!</code>. No use ese ejemplo; cree uno propio y único.</p>
+<p><strong>Resultado esperado:</strong> todas las sesiones del usuario se revocan y debe volver a conectarse con <code>Connect-Red</code>.</p>
+<hr />
+<h3>6.13 Administrar usuarios (rol Administrador)</h3>
+<p><strong>Propósito:</strong> crear cuentas y consultar el listado de usuarios.<br />
+<strong>Requisitos previos:</strong> sesión iniciada con rol <strong>Administrador</strong>.<br />
+<strong>Rol:</strong> Administrador.</p>
+<h4>6.13.1 Crear un usuario</h4>
+<pre><code class="language-powershell">New-RedUsuario -Nombre 'Ana Perez' `
+  -Correo ana.perez@altoselvaalegre.gob.pe `
+  -Rol tecnico
+</code></pre>
+<p>El sistema solicita la contraseña inicial de forma segura. También se puede pasar con <code>-Contrasena</code> usando un objeto seguro, pero no se recomienda escribirla en el historial.</p>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Administración de usuarios" src="capturas/u11_admin_usuarios.png" /></p>
+<p><em>Figura 12. Alta de un usuario técnico y listado de usuarios.</em></p>
+<p><strong>Resultado esperado:</strong> un objeto con <code>Id</code>, <code>Nombre</code>, <code>Correo</code> y <code>Rol</code>. La contraseña nunca se muestra ni se guarda en claro.</p>
+<h4>6.13.2 Listar usuarios</h4>
+<pre><code class="language-powershell">Get-RedUsuario | Format-Table Nombre, Correo, Rol, Activo -AutoSize
+</code></pre>
+<p><strong>Resultado esperado:</strong> listado sin contraseñas. La columna <code>Activo</code> indica si la cuenta puede iniciar sesión.</p>
+<h4>6.13.3 Funciones administrativas no expuestas en la consola 1.0</h4>
+<p>El cambio de rol, la desactivación de una cuenta y el restablecimiento de contraseña <strong>no están expuestos como comandos de <code>RedCli</code> en la versión 1.0</strong>. Se realizan desde la base de datos con las funciones <code>infra.admin_cambiar_rol</code>, <code>infra.admin_establecer_activo</code> y el procedimiento de restablecimiento descrito en el manual de instalación (anexo D). Esto debe hacerlo el DBA o un administrador con acceso a pgAdmin.</p>
+<blockquote>
+<p><strong>Limitación documentada:</strong> si la institución necesita estas operaciones desde la consola, deben agregarse como nuevos comandos y rutas de API en una versión posterior.</p>
+</blockquote>
+<hr />
+<h3>6.14 Registrar un dispositivo (rol Administrador)</h3>
+<p><strong>Propósito:</strong> incorporar un equipo nuevo al inventario.<br />
+<strong>Requisitos previos:</strong> sesión iniciada con rol <strong>Administrador</strong>; conocer nombre, tipo y, si aplica, ubicación.<br />
+<strong>Rol:</strong> Administrador.</p>
+<p><strong>Procedimiento:</strong></p>
+<pre><code class="language-powershell">New-RedDispositivo -Nombre SW-PISO3-01 -Tipo switch -Marca TP-Link `
+  -MantenimientoCadaMeses 12 `
+  -Observaciones 'Switch de distribucion del piso 3'
+</code></pre>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Registrar dispositivo" src="capturas/u12_admin_dispositivo.png" /></p>
+<p><em>Figura 13. Registro de un switch en el inventario.</em></p>
+<p><strong>Resultado esperado:</strong> un objeto con <code>Id</code>, <code>Nombre</code> y <code>Tipo</code>.</p>
+<p><strong>Reglas:</strong></p>
+<ul>
+<li>El nombre debe ser único y tener entre 2 y 100 caracteres.</li>
+<li>El tipo debe ser uno de los valores permitidos.</li>
+<li><code>-MantenimientoCadaMeses</code> debe estar entre 1 y 120.</li>
+<li>La ubicación (<code>-IdUbicacion</code>) debe existir previamente y obtenerse de la base de datos.</li>
+</ul>
+<blockquote>
+<p>La consola <strong>no</strong> edita ni elimina dispositivos en la versión 1.0. Para corregir un equipo, el administrador debe usar pgAdmin con las instrucciones del manual de instalación.</p>
+</blockquote>
+<hr />
+<h3>6.15 Ejecutar las pruebas de ACL (rol Administrador / responsable de red)</h3>
+<p><strong>Propósito:</strong> comprobar que las ACL del informe (v1) y la propuesta de denegación por defecto (v2) cumplen las políticas P1–P8, y generar la configuración para Packet Tracer.<br />
+<strong>Requisitos previos:</strong> Node.js 20 instalado; carpeta <code>acl</code> del proyecto; opcionalmente PostgreSQL cargado para guardar resultados.<br />
+<strong>Rol:</strong> Administrador / responsable de red.</p>
+<p><strong>Procedimiento:</strong></p>
+<ol>
+<li>Abrir PowerShell y ubicarse en la carpeta de ACL:</li>
+</ol>
+<p><code>powershell
+   cd C:\proyecto_red\acl</code></p>
+<ol start="2">
+<li>Ejecutar las pruebas:</li>
+</ol>
+<p><code>powershell
+   node probar_acls.js</code></p>
+<ol start="3">
+<li>Verificar que la última línea sea:</li>
+</ol>
+<p><code>RESULTADO: TODAS LAS PRUEBAS ESPERADAS PASARON</code></p>
+<ol start="4">
+<li>Si se modificó la matriz de políticas, regenerar la configuración:</li>
+</ol>
+<p><code>powershell
+   node generar_config.js
+   node plan_pt.js</code></p>
+<ol start="5">
+<li>Para guardar las ACL en la base de datos (requiere PostgreSQL y <code>psql</code> en el PATH):</li>
+</ol>
+<p><code>powershell
+   node cfg_a_sql.js R1-FORTINET v2_default_deny config\R1_v2_migracion.cfg | psql -U postgres -d infra_red_db -v ON_ERROR_STOP=1 -q
+   node cfg_a_sql.js R1B v2_default_deny config\R1B_v2_migracion.cfg | psql -U postgres -d infra_red_db -v ON_ERROR_STOP=1 -q</code></p>
+<p><strong>Evidencia de consola:</strong></p>
+<p><img alt="Pruebas de ACL" src="capturas/u13_acl.png" /></p>
+<p><em>Figura 14. Resultado exitoso del simulador de ACL: v1 permitía el 73,2 % de las combinaciones; v2 solo el 9,4 % autorizado por la matriz.</em></p>
+<p><strong>Resultado esperado:</strong> todas las pruebas de la Tabla 16 pasan; la comparación muestra la reducción de tráfico permitido y la postura “DENEGAR por defecto” en las ACL v2.</p>
+<p><strong>Notas:</strong></p>
+<ul>
+<li>El simulador comprueba la lógica de las ACL, no la sintaxis exacta de cada versión de Packet Tracer.</li>
+<li>Las ACL v2 son sin estado; no sustituyen al firewall FortiGate real.</li>
+<li>Antes de aplicar una configuración en un router real, respalde la configuración y pruébela primero en Packet Tracer.</li>
+</ul>
+<hr />
+<h3>6.16 Cerrar sesión</h3>
+<p>Ya documentado en la sección 4.6. Se recomienda cerrar sesión al terminar, especialmente en equipos compartidos.</p>
+<hr />
+<h2>7. Mensajes de error y solución de problemas</h2>
+<h3>7.1 Diagnóstico general</h3>
+<p>Antes de reportar un problema, realice estas cinco comprobaciones:</p>
+<ol>
+<li>¿La ventana de PowerShell tiene el módulo cargado? Ejecute <code>Get-Command -Module RedCli</code>.</li>
+<li>¿La sesión está activa? Ejecute <code>Get-RedYo</code>.</li>
+<li>¿La API responde? Abra otra consola y ejecute <code>Test-NetConnection servidor -Port 3000</code>.</li>
+<li>¿La dirección y el correo son correctos? Revise mayúsculas y espacios.</li>
+<li>¿La cuenta está bloqueada o desactivada? Consulte al administrador.</li>
+</ol>
+<h3>7.2 Tabla de problemas y soluciones</h3>
+<table>
+<thead>
+<tr>
+<th>N.º</th>
+<th>Problema o mensaje</th>
+<th>Posible causa</th>
+<th>Procedimiento de solución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><em>The term 'Connect-Red' is not recognized…</em></td>
+<td>No se cargó el módulo</td>
+<td>Ejecutar <code>Import-Module C:\proyecto_red\scripts\RedCli.psm1 -Force</code> y repetir</td>
+</tr>
+<tr>
+<td>2</td>
+<td><em>No se puede cargar el archivo… la ejecución de scripts está deshabilitada</em></td>
+<td>Política de ejecución de Windows</td>
+<td>Ejecutar <code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code> y confirmar con <code>S</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><em>Correo o contraseña incorrectos…</em></td>
+<td>Datos mal escritos, cuenta desactivada o bloqueada</td>
+<td>Revisar mayúsculas y teclado; esperar 15 minutos si hay bloqueo; pedir restablecimiento</td>
+</tr>
+<tr>
+<td>4</td>
+<td><em>Demasiados intentos en poco tiempo…</em></td>
+<td>Se superó el límite de intentos (20/min por IP o 10/15 min por correo)</td>
+<td>Esperar unos minutos; verificar que no haya un proceso automatizado intentando entrar</td>
+</tr>
+<tr>
+<td>5</td>
+<td><em>No se pudo contactar con el servidor…</em></td>
+<td>API apagada, dirección incorrecta, firewall o VPN</td>
+<td>Verificar la dirección; probar <code>Test-NetConnection</code>; avisar a soporte</td>
+</tr>
+<tr>
+<td>6</td>
+<td><em>No hay sesión activa…</em></td>
+<td>Se cerró la sesión o se abrió una ventana nueva</td>
+<td>Ejecutar <code>Connect-Red</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><em>La sesión no es válida o caducó…</em></td>
+<td>30 minutos de inactividad, 8 horas de sesión o cambio de contraseña</td>
+<td>Ejecutar <code>Connect-Red</code> otra vez</td>
+</tr>
+<tr>
+<td>8</td>
+<td><em>Su rol no permite esta acción…</em></td>
+<td>El rol no autoriza la operación</td>
+<td>Consultar la matriz de permisos (sección 4.7) o pedir al administrador</td>
+</tr>
+<tr>
+<td>9</td>
+<td><em>No se encontró el registro, o su rol no puede verlo</em></td>
+<td>UUID o nombre incorrecto, o el registro es de otra persona</td>
+<td>Verificar el nombre/ID; si es un mantenimiento ajeno, pedir al administrador</td>
+</tr>
+<tr>
+<td>10</td>
+<td><em>Datos no válidos. Revise los valores indicados…</em></td>
+<td>Tipo, estado, fecha o texto fuera de las reglas</td>
+<td>Revisar la tabla de parámetros (sección 5.4) y corregir</td>
+</tr>
+<tr>
+<td>11</td>
+<td><em>La fecha debe tener el formato AAAA-MM-DD</em></td>
+<td>Fecha escrita como <code>10/12/2026</code></td>
+<td>Escribir <code>2026-12-10</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><em>Para marcar 'completado' indique también -FechaRealizada…</em></td>
+<td>Falta la fecha real</td>
+<td>Agregar <code>-FechaRealizada AAAA-MM-DD</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><em>No se encontró un dispositivo llamado …</em></td>
+<td>Nombre mal escrito o equipo no registrado</td>
+<td>Copiar el nombre exacto de <code>Get-RedDispositivo</code>; si no existe, pedir al administrador que lo registre</td>
+</tr>
+<tr>
+<td>14</td>
+<td><em>Ya existe un registro igual (nombre o correo repetido)</em></td>
+<td>Nombre de equipo o correo duplicado</td>
+<td>Usar otro nombre/correo; consultar el registro existente</td>
+</tr>
+<tr>
+<td>15</td>
+<td><em>No se encontró el token de seguridad (CSRF)…</em></td>
+<td>La cookie de sesión no se estableció</td>
+<td>Volver a ejecutar <code>Connect-Red</code>; si persiste, revisar la configuración de cookies y HTTPS</td>
+</tr>
+<tr>
+<td>16</td>
+<td>La lista de próximos mantenimientos está vacía</td>
+<td>Los equipos no tienen fecha de instalación ni mantenimiento completado</td>
+<td>No es un error; completar un mantenimiento o registrar la fecha de instalación</td>
+</tr>
+<tr>
+<td>17</td>
+<td>No se ven las IP de los servidores</td>
+<td>El informe de origen no asigna IP a cada servidor</td>
+<td>Solicitar al administrador que confirme y registre las IP</td>
+</tr>
+<tr>
+<td>18</td>
+<td>El CSV se ve con caracteres extraños en Excel</td>
+<td>Codificación distinta de UTF-8</td>
+<td>Abrir con <em>Datos → Desde texto/CSV</em> y elegir UTF-8</td>
+</tr>
+<tr>
+<td>19</td>
+<td><code>Access is denied</code> al importar el módulo</td>
+<td>Ruta incorrecta o permisos insuficientes</td>
+<td>Verificar que <code>RedCli.psm1</code> esté en <code>C:\proyecto_red\scripts</code>; ejecutar PowerShell como usuario normal, no como administrador si no es necesario</td>
+</tr>
+<tr>
+<td>20</td>
+<td><code>node</code> no se reconoce al ejecutar ACL</td>
+<td>Node.js no está instalado o no está en el PATH</td>
+<td>Instalar Node.js 20 LTS con <code>winget install OpenJS.NodeJS.LTS</code> y abrir una consola nueva</td>
+</tr>
+<tr>
+<td>21</td>
+<td><code>probar_acls.js</code> falla con <em>Token no soportado</em></td>
+<td>Una ACL usa una palabra que el simulador no conoce</td>
+<td>Revisar la línea indicada; el simulador solo admite la sintaxis modelada</td>
+</tr>
+<tr>
+<td>22</td>
+<td>En Packet Tracer aparece <code>% Invalid input detected</code></td>
+<td>La versión de Packet Tracer no admite ese comando</td>
+<td>Probar la sintaxis equivalente de la versión; documentar el cambio</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Después de aplicar la v2, los PC pierden IP</td>
+<td>Falta la regla DHCP de esa VLAN o las interfaces no coinciden</td>
+<td>Revisar la regla DHCP y los nombres <code>G0/0</code> y <code>G0/1</code> del proyecto; restaurar la configuración si es necesario</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Error 500 del servidor</td>
+<td>Falla interna, base de datos caída o variable de entorno incorrecta</td>
+<td>Avisar a soporte con la hora y el mensaje; revisar el log de la API</td>
+</tr>
+<tr>
+<td>25</td>
+<td>La cuenta se bloqueó y no hay administrador disponible</td>
+<td>No hay una segunda cuenta administrativa</td>
+<td>Mantener al menos dos administradores activos; el DBA puede desbloquear con SQL</td>
+</tr>
+</tbody>
+</table>
+<h3>7.3 Procedimiento para reportar un incidente</h3>
+<ol>
+<li>Anotar la fecha, la hora y el comando ejecutado.</li>
+<li>Copiar el mensaje de error completo (sin contraseñas).</li>
+<li>Indicar el rol de la cuenta y la dirección de la API.</li>
+<li>Enviar la información al responsable de seguridad y a soporte por el canal institucional.</li>
+<li>No reintentar más de 3 veces si el error es de autenticación, para no bloquear la cuenta.</li>
+</ol>
+<hr />
+<h2>8. Recomendaciones de uso</h2>
+<h3>8.1 Seguridad de las credenciales</h3>
+<ol>
+<li><strong>La contraseña es personal e intransferible.</strong> No se comparte, no se anota en papeles a la vista y no se envía por mensajería.</li>
+<li>Use una contraseña diferente a la de otros sistemas.</li>
+<li>Cámbiela de inmediato si sospecha que alguien la conoce.</li>
+<li>No use la opción de “recordar contraseña” en equipos compartidos.</li>
+<li>El sistema <strong>nunca</strong> solicita la contraseña por correo, teléfono ni mensajería.</li>
+</ol>
+<h3>8.2 Seguridad de la sesión</h3>
+<ol>
+<li>Cierre sesión con <code>Disconnect-Red</code> al terminar.</li>
+<li>No deje la sesión abierta en equipos compartidos.</li>
+<li>Bloquee Windows (<code>Win + L</code>) si se aleja del equipo.</li>
+<li>No use el sistema desde cibercafés, equipos sin antivirus o redes públicas.</li>
+<li>La sesión se cierra sola tras 30 minutos de inactividad, pero no dependa de ello.</li>
+</ol>
+<h3>8.3 Integridad de la información</h3>
+<ol>
+<li>Verifique el nombre exacto del equipo antes de programar un mantenimiento.</li>
+<li>Use descripciones claras, con qué se hizo, por qué y cuál fue el resultado.</li>
+<li><strong>No incluya contraseñas, claves, configuraciones completas ni datos personales</strong> en las descripciones.</li>
+<li>No marque un mantenimiento como <code>completado</code> si no probó el servicio.</li>
+<li>No modifique el estado de un equipo sin autorización; el técnico no puede editar equipos en la versión 1.0.</li>
+<li>Exporte los CSV solo a carpetas institucionales y elimínelos cuando ya no los necesite.</li>
+</ol>
+<h3>8.4 Buenas prácticas de mantenimiento</h3>
+<ol>
+<li>Avisar a los usuarios afectados y acordar una ventana de mantenimiento.</li>
+<li>Respaldar la configuración del equipo antes de intervenirlo (<code>copy running-config startup-config</code> en Cisco).</li>
+<li>Tener a mano cómo revertir el cambio.</li>
+<li>Verificar las baterías de los UPS antes de intervenir equipos críticos.</li>
+<li>Probar conectividad, DHCP y acceso a servidores antes de marcar <code>completado</code>.</li>
+<li>Documentar el resultado en la descripción o en un nuevo mantenimiento.</li>
+</ol>
+<h3>8.5 Buenas prácticas de seguridad de red</h3>
+<ol>
+<li>Probar las ACL primero en el simulador y en Packet Tracer; nunca aplicarlas directamente en producción sin respaldo.</li>
+<li>Aplicar los cambios de ACL desde la consola del equipo, no por Telnet/SSH, para no perder el acceso.</li>
+<li>Usar <code>reload in 10</code> en equipos reales antes de un cambio riesgoso y <code>reload cancel</code> al confirmar que todo funciona.</li>
+<li>Revisar los contadores <code>matches</code> de la regla <code>deny ip any any log</code> para detectar intentos bloqueados.</li>
+<li>No publicar direcciones IP, planos de red ni configuraciones en canales abiertos.</li>
+<li>Cambiar la contraseña de VTP que aparece en el Diario de Ingeniería y retirarla de los documentos.</li>
+</ol>
+<h3>8.6 Copias de seguridad y continuidad</h3>
+<ol>
+<li>Mantener copias diarias cifradas y una copia fuera del equipo.</li>
+<li>Probar la restauración al menos cada trimestre; <strong>una copia que nunca se restauró no es una copia</strong>.</li>
+<li>Guardar la clave privada GPG fuera del servidor (USB cifrado o caja fuerte) y no en la misma máquina.</li>
+<li>Documentar quién es el responsable de las copias y dónde se guardan.</li>
+</ol>
+<h3>8.7 Conducta y reporte</h3>
+<ol>
+<li>Cada persona usa su propia cuenta; el sistema registra quién hizo cada cambio.</li>
+<li>reportar de inmediato: acceso extraño, contraseña expuesta, equipo perdido, datos que no corresponden a su rol o mensajes que pidan credenciales.</li>
+<li>No intentar saltar las restricciones de rol ni manipular la base de datos sin autorización.</li>
+<li>Respetar la confidencialidad de la información de la red municipal.</li>
+</ol>
+<hr />
+<h2>9. Preguntas frecuentes</h2>
+<p><strong>¿Puedo ver quién cambió un dato?</strong><br />
+No con el rol Consulta. La bitácora la revisa el administrador o el DBA.</p>
+<p><strong>¿Por qué no veo las IP de los servidores?</strong><br />
+Porque el informe de origen no asigna una IP a cada servidor. Quedan pendientes de confirmar y registrar.</p>
+<p><strong>¿Por qué “próximos mantenimientos” está vacío?</strong><br />
+Porque se calcula desde la fecha de instalación o el último mantenimiento completado, y los equipos iniciales no tienen ninguno de los dos.</p>
+<p><strong>¿Puedo usar el sistema desde mi casa?</strong><br />
+Solo si la institución habilita el acceso por VPN o publica la API con HTTPS y su equipo cumple los requisitos de seguridad.</p>
+<p><strong>¿Puedo crear mi propia cuenta?</strong><br />
+No. El registro público no existe; un administrador debe crear la cuenta.</p>
+<p><strong>¿Puedo recuperar mi contraseña por correo?</strong><br />
+No en la versión 1.0. El administrador la restablece y entrega una temporal por un canal seguro.</p>
+<p><strong>¿Qué pasa si fallo 5 veces la contraseña?</strong><br />
+La cuenta se bloquea 15 minutos. Pasado ese tiempo puede intentar de nuevo; si no recuerda la contraseña, pida el restablecimiento.</p>
+<p><strong>¿Puedo usar Excel para editar el inventario?</strong><br />
+Puede exportar a CSV para analizar, pero la edición oficial se hace en el sistema; no vuelva a importar el CSV sin un procedimiento definido.</p>
+<p><strong>¿El sistema monitorea la red en tiempo real?</strong><br />
+No. Solo guarda el inventario y los mantenimientos. Para monitoreo se requiere una herramienta como SNMP/Zabbix.</p>
+<p><strong>¿El sistema configura los routers?</strong><br />
+No. Genera la configuración y un plan de pruebas; el cambio se aplica manualmente en Packet Tracer o en el equipo.</p>
+<p><strong>¿Qué hago si la API no responde?</strong><br />
+Verifique la dirección, la VPN y el servicio; si persiste, avise a soporte con la hora y el mensaje.</p>
+<p><strong>¿Puedo compartir mi usuario?</strong><br />
+No. Cada acción queda registrada a nombre de la cuenta; compartirla rompe la trazabilidad y la seguridad.</p>
+<hr />
+<h2>10. Glosario</h2>
+<table>
+<thead>
+<tr>
+<th>Término</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ACL</strong></td>
+<td>Lista de control de acceso. Reglas que permiten o deniegan tráfico en un router o firewall</td>
+</tr>
+<tr>
+<td><strong>API REST</strong></td>
+<td>Servicio web que recibe solicitudes HTTP y devuelve datos en JSON</td>
+</tr>
+<tr>
+<td><strong>bcrypt</strong></td>
+<td>Algoritmo de hash lento usado para guardar contraseñas de forma irreversible</td>
+</tr>
+<tr>
+<td><strong>CIDR</strong></td>
+<td>Notación de red con prefijo, por ejemplo <code>10.0.0.0/24</code></td>
+</tr>
+<tr>
+<td><strong>CLI</strong></td>
+<td>Interfaz de línea de comandos</td>
+</tr>
+<tr>
+<td><strong>CSRF</strong></td>
+<td>Ataque que fuerza a un usuario autenticado a ejecutar una acción sin querer; el sistema lo mitiga con token y cookies</td>
+</tr>
+<tr>
+<td><strong>CSV</strong></td>
+<td>Archivo de texto con valores separados por comas; se abre en Excel</td>
+</tr>
+<tr>
+<td><strong>DBA</strong></td>
+<td>Administrador de la base de datos</td>
+</tr>
+<tr>
+<td><strong>DHCP</strong></td>
+<td>Servicio que asigna direcciones IP automáticamente</td>
+</tr>
+<tr>
+<td><strong>GPG</strong></td>
+<td>Herramienta de cifrado y firma; se usa para cifrar las copias de seguridad</td>
+</tr>
+<tr>
+<td><strong>HSRP</strong></td>
+<td>Protocolo de redundancia de routers de Cisco</td>
+</tr>
+<tr>
+<td><strong>JSON</strong></td>
+<td>Formato de texto para intercambiar datos</td>
+</tr>
+<tr>
+<td><strong>MFA</strong></td>
+<td>Autenticación multifactor; no incluida en la versión 1.0</td>
+</tr>
+<tr>
+<td><strong>NAT</strong></td>
+<td>Traducción de direcciones de red</td>
+</tr>
+<tr>
+<td><strong>Packet Tracer</strong></td>
+<td>Simulador de redes de Cisco</td>
+</tr>
+<tr>
+<td><strong>pgAdmin</strong></td>
+<td>Herramienta gráfica para administrar PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>PostgreSQL</strong></td>
+<td>Motor de base de datos relacional usado por el sistema</td>
+</tr>
+<tr>
+<td><strong>RLS</strong></td>
+<td>Row Level Security: filtra las filas que cada rol puede ver o modificar</td>
+</tr>
+<tr>
+<td><strong>SHA-256</strong></td>
+<td>Función de hash usada para verificar integridad y guardar tokens de sesión</td>
+</tr>
+<tr>
+<td><strong>TLS/HTTPS</strong></td>
+<td>Cifrado del tráfico entre el cliente y el servidor</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>Identificador único universal; se usa como clave de los registros</td>
+</tr>
+<tr>
+<td><strong>VLAN</strong></td>
+<td>Red local virtual que segmenta un switch</td>
+</tr>
+<tr>
+<td><strong>VPN</strong></td>
+<td>Red privada virtual para acceso remoto seguro</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>11. Anexos</h2>
+<h3>Anexo A. Tarjeta de referencia rápida por rol</h3>
+<table>
+<thead>
+<tr>
+<th>Quiero…</th>
+<th>Consulta</th>
+<th>Técnico</th>
+<th>Administrador</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Iniciar sesión</td>
+<td><code>Connect-Red -Url … -Correo …</code></td>
+<td>Igual</td>
+<td>Igual</td>
+</tr>
+<tr>
+<td>Ver equipos</td>
+<td><code>Get-RedDispositivo</code></td>
+<td>Igual</td>
+<td>Igual</td>
+</tr>
+<tr>
+<td>Ver VLAN</td>
+<td><code>Get-RedVlan</code></td>
+<td>Igual</td>
+<td>Igual</td>
+</tr>
+<tr>
+<td>Ver subredes</td>
+<td><code>Get-RedSubred</code></td>
+<td>Igual</td>
+<td>Igual</td>
+</tr>
+<tr>
+<td>Ver mantenimientos</td>
+<td><code>Get-RedMantenimiento</code></td>
+<td>Igual</td>
+<td>Igual</td>
+</tr>
+<tr>
+<td>Ver próximos vencimientos</td>
+<td><code>Get-RedMantenimiento -Proximos</code></td>
+<td>Igual</td>
+<td>Igual</td>
+</tr>
+<tr>
+<td>Programar mantenimiento</td>
+<td>No</td>
+<td><code>New-RedMantenimiento …</code></td>
+<td>Sí</td>
+</tr>
+<tr>
+<td>Actualizar mantenimiento</td>
+<td>No</td>
+<td><code>Set-RedMantenimiento …</code> (solo los suyos)</td>
+<td>Sí (todos)</td>
+</tr>
+<tr>
+<td>Registrar equipo</td>
+<td>No</td>
+<td>No</td>
+<td><code>New-RedDispositivo …</code></td>
+</tr>
+<tr>
+<td>Crear usuario</td>
+<td>No</td>
+<td>No</td>
+<td><code>New-RedUsuario …</code></td>
+</tr>
+<tr>
+<td>Listar usuarios</td>
+<td>No</td>
+<td>No</td>
+<td><code>Get-RedUsuario</code></td>
+</tr>
+<tr>
+<td>Cambiar mi contraseña</td>
+<td><code>Set-RedContrasena</code></td>
+<td>Igual</td>
+<td>Igual</td>
+</tr>
+<tr>
+<td>Cerrar sesión</td>
+<td><code>Disconnect-Red</code></td>
+<td>Igual</td>
+<td>Igual</td>
+</tr>
+</tbody>
+</table>
+<h3>Anexo B. Datos iniciales cargados</h3>
+<table>
+<thead>
+<tr>
+<th>Información</th>
+<th>Cantidad inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ubicaciones</td>
+<td>6</td>
+</tr>
+<tr>
+<td>VLAN</td>
+<td>6 (todas propuestas)</td>
+</tr>
+<tr>
+<td>Subredes</td>
+<td>8 (3 actuales y 5 propuestas)</td>
+</tr>
+<tr>
+<td>Dispositivos</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Políticas de seguridad</td>
+<td>8 (P1 a P8)</td>
+</tr>
+<tr>
+<td>ACL</td>
+<td>16 (8 del informe y 8 de la propuesta)</td>
+</tr>
+<tr>
+<td>Reglas de ACL</td>
+<td>127</td>
+</tr>
+<tr>
+<td>Pruebas de conectividad</td>
+<td>55 (11 de la Tabla 16 y 44 del simulador)</td>
+</tr>
+</tbody>
+</table>
+<h3>Anexo C. Contactos de soporte</h3>
+<table>
+<thead>
+<tr>
+<th>Necesidad</th>
+<th>Contacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acceso, contraseña o permisos</td>
+<td><strong>[Completar: administrador del sistema]</strong></td>
+</tr>
+<tr>
+<td>Incidente de seguridad</td>
+<td><strong>[Completar: responsable de seguridad]</strong></td>
+</tr>
+<tr>
+<td>El sistema no responde</td>
+<td><strong>[Completar: soporte técnico]</strong></td>
+</tr>
+<tr>
+<td>Copias de seguridad y restauración</td>
+<td><strong>[Completar: DBA]</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Anexo D. Documentos relacionados</h3>
+<table>
+<thead>
+<tr>
+<th>Documento</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>01_INFORMACION_DEL_SISTEMA.md</code></td>
+<td>Ficha, alcance, roles y limitaciones del sistema</td>
+</tr>
+<tr>
+<td><code>02_MANUAL_USUARIO_CONSULTA.md</code></td>
+<td>Manual detallado del rol Consulta</td>
+</tr>
+<tr>
+<td><code>03_MANUAL_USUARIO_TECNICO (1).md</code></td>
+<td>Manual detallado del rol Técnico</td>
+</tr>
+<tr>
+<td><code>01_Manual_de_Instalacion_y_Despliegue.md</code></td>
+<td>Instalación, configuración y despliegue</td>
+</tr>
+<tr>
+<td><code>06_DICCIONARIO_DE_DATOS.md</code></td>
+<td>Tablas, columnas, tipos y reglas</td>
+</tr>
+<tr>
+<td><code>docs/guia_seguridad.md</code></td>
+<td>Controles de seguridad y hallazgos</td>
+</tr>
+<tr>
+<td><code>acl/LEEME_ACL.md</code></td>
+<td>Uso del simulador y generador de ACL</td>
+</tr>
+<tr>
+<td><code>MANUAL_IMPLEMENTACION.md</code></td>
+<td>Procedimiento técnico de instalación en Windows</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>12. Control de versiones</h2>
+<table>
+<thead>
+<tr>
+<th>Versión</th>
+<th>Fecha</th>
+<th>Cambios</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>01/11/2026</td>
+<td>Primera versión del manual de usuario: información general, requisitos, acceso, interfaz, procedimientos, errores, recomendaciones, glosario y anexos</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Fin del Manual de Usuario.</strong></p>
